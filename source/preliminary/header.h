@@ -1,25 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
+/*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/27 02:48:54 by viwade            #+#    #+#             */
-/*   Updated: 2019/05/27 12:20:09 by viwade           ###   ########.fr       */
+/*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
+/*   Updated: 2019/09/21 22:51:46 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft.h"
-#include <string.h>
+#ifndef FT_LS_HEADER_H
+# define FT_LS_HEADER_H
+# include "../ft_ls.h"
 
-int64_t
-	ft_wstrlen(wchar_t *s)
-{
-	wchar_t	*e;
-
-	e = s;
-	while (*(e += !!e[0]))
-		;
-	return ((e - s) / sizeof(wchar_t));
-}
+#endif

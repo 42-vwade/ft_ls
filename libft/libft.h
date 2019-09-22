@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:34:03 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/19 19:10:24 by viwade           ###   ########.fr       */
+/*   Updated: 2019/09/22 00:40:09 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 # include "core/libft_macros.h"
 # include "core/libft_structs.h"
 # include "ext/get_next_line/get_next_line.h"
-# include "ext/ft_printf/ft_printf.h"
 
 /*
 **		STANDARD OUTPUT
 */
 
+int				ft_printf(const char *format, ...);
+int				ft_vprintf(const char *format, va_list ap);
 FT_VOID			ft_putchar(int c);
 FT_VOID			ft_putchar_fd(char c, int fd);
 FT_VOID			ft_putwchar(unsigned int wc);

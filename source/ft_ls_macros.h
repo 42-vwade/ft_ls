@@ -1,28 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_ls_macros.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 20:25:19 by viwade            #+#    #+#             */
-/*   Updated: 2019/05/13 18:41:30 by viwade           ###   ########.fr       */
+/*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
+/*   Updated: 2019/09/21 23:17:12 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "../../libft.h"
+#ifndef FT_LS_MACROS_H
+# define FT_LS_MACROS_H
+# include "ft_ls.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	if (!s || !f)
-		return (NULL);
-	if ((new = ft_strnew(ft_strlen(s))))
-		while (s[i++])
-			new[i - 1] = f(i - 1, s[i - 1]);
-	return (new);
-}
+#endif

@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 19:01:40 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/10 05:19:29 by viwade           ###   ########.fr       */
+/*   Updated: 2019/09/19 19:00:11 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,12 @@ struct	s_format
 	t_list		*list;
 	char		*str;
 	size_t		len;
-	size_t		count;
-	size_t		size;
 	int			error;
 	void		*v;
 	void		*output;
 	void		*encode;
 	void		*tmp;
 	size_t		write;
-	t_bstr		bytes;
 };
 
 struct	s_type

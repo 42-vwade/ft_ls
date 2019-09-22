@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_ls_structs.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/31 03:32:00 by viwade            #+#    #+#             */
-/*   Updated: 2019/05/13 18:44:33 by viwade           ###   ########.fr       */
+/*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
+/*   Updated: 2019/09/22 00:14:18 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft.h"
+#ifndef FT_LS_STRUCTS_H
+# define FT_LS_STRUCTS_H
+# include "ft_ls.h"
 
-char	*ft_strcat(char *dst, const char *src)
+/*
+**	TYPE DEFINITION
+*/
+
+typedef struct s_config	t_config;
+
+/*
+**	STRUCTS
+*/
+
+union	u_config
 {
-	size_t		i;
-	size_t		len;
+	unsigned long	flags;
+	struct	s_config
+	{
+		unsigned char	l:1;
+		unsigned char	R:1;
+		unsigned char	a:1;
+		unsigned char	r:1;
+		unsigned char	t:1;
+	};
+};
 
-	i = 0;
-	if (!dst || !src)
-		ft_error("");
-	len = ft_strlen(dst);
-	while ((dst[len + i] = src[i]))
-		i++;
-	dst[len + i] = 0;
-	return (dst);
-}
+
+#endif

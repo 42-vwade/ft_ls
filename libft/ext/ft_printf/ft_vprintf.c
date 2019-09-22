@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 04:39:52 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/10 08:12:43 by viwade           ###   ########.fr       */
+/*   Updated: 2019/09/19 18:59:51 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int
 
 	init_format(&o, ap, format);
 	create_string(&o, format);
-	o.count = write(1, o.output, o.write);
+	write(1, o.output, o.write);
 	ft_memdel(&o.output);
 	va_end(o.ap);
 	return (o.write);
