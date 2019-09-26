@@ -3,25 +3,27 @@
 ####	CONTROL PANEL	########################################################
 
 NAME		=	libft.a
-ASSETS		=	assets/
-SRCDIR		=
-HDRDIR		=
-OBJDIR		=	obj/
-LIBDIR		=
-TMPDIR		=	.tmp/
-#CFILES		=	$(filter-out ._*, $(notdir $(wildcard *.c)))
-CFILES		+=	$(shell find */ ! -name ".*" -name '*.c')
-#CFILES		:=	$(notdir $(CFILES))
-HFILES		=	libft.h
-CFLAGS		:=	-c -Wall -Werror -Wextra
+BUILDDIR	=	build
+INCLDIR		=	include
+CDIR		=	source
+ODIR		=	obj
+CFILES		:=	$(shell find $(CDIR) ! -name "._*" -regex ".*\\.[c]")
+HFILES		:=	$(shell find $(INCLDIR) ! -name "._*" -regex ".*\\.[h]")
 CC			:=	gcc
-AR			=	ar rc
-LIB			=	$(addprefix $(LIBDIR), libft.a)
-SOURCES		=	$(addprefix $(SRCDIR), $(CFILES))
-OBJECTS		=	$(addprefix $(OBJDIR), $(notdir $(CFILES:%.c=%.o)))
-#AOBJECTS	=	$(addprefix $(OBJDIR), $(notdir $(ACFILES:%.c=%.o)))
-HEADERS		= 	$(addprefix $(HDRDIR), $(HFILES))
-DEBUG		=	0;
+AR			:=	ar rc
+IFLAGS		:=	-I $(abspath $(INCLDIR))
+CFLAGS		:=	-c $(IFLAGS) -Wall -Werror -Wextra
+FLAGS		:=	$(IFLAGS) -Wall -Wextra
+FLAGS		:=	$(FLAGS) -Werror
+
+####	DEBUGGING		########################################################
+
+FLAGS		:=	$(IFLAGS) -Wall -Wextra -g
+
+####	AUTO SETTING	########################################################
+
+ODIR		:=	$(addprefix $(BUILDDIR)/, $(ODIR))
+OBJECTS		:=	$(addprefix $(ODIR)/, $(notdir $(CFILES:%.c=%.o)))
 
 ####	FONT FORMAT		########################################################
 
@@ -34,24 +36,24 @@ FMM = \e[35m#		MAGENTA COLOR
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) | $(TMPDIR)
-	@ar rc $@ $^
+$(NAME): $(OBJECTS)
+	@$(AR) $@ $^
 	@ranlib $@
 
-$(OBJECTS): $(CFILES)
-	@make -C $(OBJDIR)
+$(OBJECTS): $(CFILES) | $(ODIR)
+	@cd $(ODIR); $(CC) $(CFLAGS) $(abspath $^)
 
-$(TMPDIR):
+$(ODIR): $(BUILDDIR)
+	@mkdir -p $@
+
+$(BUILDDIR):
 	@mkdir -p $@
 
 clean:
-	@make clean -C $(OBJDIR)
-	@rm -rf $(TMPDIR)
-	@cd $(OBJDIR) && rm -rf *.o
+	@rm -rf $(ODIR)
 
 fclean: clean
-	@make fclean -C $(OBJDIR)
-	@rm -rf $(NAME)
+	@rm -rf $(BUILDDIR) $(NAME)
 
 re: fclean all
 
