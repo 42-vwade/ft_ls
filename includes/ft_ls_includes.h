@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_include.h                                    :+:      :+:    :+:   */
+/*   ft_ls_includes.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 15:11:53 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 19:53:23 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/03 08:12:53 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/15 18:42:14 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_INCLUDE_H
-# define LIBFT_INCLUDE_H
+#ifndef FT_LS_INCLUDES_H
+# define FT_LS_INCLUDES_H
 # include <unistd.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/types.h>
+# include <sys/xattr.h>
+# include <dirent.h>
+# include <errno.h>
 # include <stdlib.h>
-# include <stdarg.h>
-# include <math.h>
+# include <string.h>
+# include <limits.h>
+# include <stdio.h>
+# include <time.h>
+# include <pwd.h>
+# include <grp.h>
+# include "libft.h"
 
 #endif

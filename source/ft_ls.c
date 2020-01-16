@@ -6,10 +6,14 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/21 18:01:07 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/13 11:12:43 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-
+int
+	ft_ls(t_param parameters, char *directory)
+{
+	;
+}

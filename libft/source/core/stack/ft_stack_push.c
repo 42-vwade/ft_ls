@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_macros.h                                     :+:      :+:    :+:   */
+/*   ft_stack_push.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/22 01:08:23 by viwade           ###   ########.fr       */
+/*   Created: 2019/09/26 15:54:29 by viwade            #+#    #+#             */
+/*   Updated: 2019/09/29 06:46:04 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_MACROS_H
-# define FT_LS_MACROS_H
-# include "ft_ls.h"
-# define _TD_CFG	typedef union u_config	config_u;
+#include "libft.h"
 
-_TD_CFG;
+void
+	ft_stack_push(t_stack *stack, void *content)
+{
+	t_node	*new;
 
-#endif
+	if (!stack)
+		return ;
+	if (!(new = malloc(sizeof(t_node))))
+		ft_error("ft_stack: <node> failed to initialize");
+	new->next = stack->top;
+	new->content = content;
+	stack->top = new;
+}

@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_include.h                                    :+:      :+:    :+:   */
+/*   quicksort.c.m                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 15:11:53 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 19:53:23 by viwade           ###   ########.fr       */
+/*   Created: 2019/09/29 10:30:05 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/15 18:56:29 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_INCLUDE_H
-# define LIBFT_INCLUDE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <math.h>
+#include "ft_ls.h"
 
-#endif
+/*
+**	Last element pick.
+*/
+
+static t_list
+	*qs_queue(t_stack *stack, t_node *last)
+{
+
+}
+
+void
+	ls_quicksort(t_stack *stack)
+{
+	t_quicksort	qs;
+
+	if (!stack || !stack->top)
+		ft_error("ls_sort: invalid stack");
+	list = qs_queue(node)
+
+}

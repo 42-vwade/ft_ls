@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:34:03 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 15:12:28 by viwade           ###   ########.fr       */
+/*   Updated: 2019/10/11 01:23:41 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,24 @@ ld_t			ft_sqrt(long double n);
 ld_t			ft_sqroot(long double n);
 
 /*
-**	Length Getters
+**	Queue
 */
+
+t_queue			*ft_queue(void);
+void			ft_queue_push(t_queue *queue, void *content);
+void			*ft_queue_pop(t_queue *queue);
+void			*ft_queue_peek(t_queue *queue);
+void			ft_queue_del(t_queue *queue);
+
+/*
+**	Stack
+*/
+
+t_stack			*ft_stack(void);
+void			ft_stack_push(t_stack *stack, void *content);
+void			*ft_stack_pop(t_stack *stack);
+void			*ft_stack_peek(t_stack *stack);
+void			ft_stack_del(t_stack *stack);
 
 /*
 **	Length Getters

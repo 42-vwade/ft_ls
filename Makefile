@@ -2,49 +2,58 @@
 ########################################################	MAIN MAKEFILE	####
 ####	CONTROL PANEL	########################################################
 
-NAME		=	ft_ls
-BUILDDIR	=	build
-SRCDIR		=	source
-OBJDIR		=	obj
-LIBFT		=	libft/libft.a
-CFILES		=	$(shell find $(SRCDIR) ! -name "._*" -regex ".*\\.[c]")
-LFILES		=	$(shell find $(dir $(LIBFT)) ! -name "._*" -regex ".*\\.[c]")
-FLAGS		:=	$(FLAGS) -Wall -Wextra
+NAME		:=	ft_ls
+BUILDDIR	:=	build
+INCLDIR		:=	includes
+CDIR		:=	source
+ODIR		:=	obj
+LDIR		:=	libft
+LINCL		:=	$(LDIR)/include
+LIBFT		:=	$(LDIR)/libft.a
+CFILES		:=	$(shell find $(CDIR) ! -name "._*" -regex ".*\\.[c]")
+HFILES		:=	$(shell find $(INCLDIR) ! -name "._*" -regex ".*\\.[h]")
+LFILES		:=	$(shell find $(dir $(LIBFT)) ! -name "._*" -regex ".*\\.[c]")
+INCLUDE		:=	-I $(INCLDIR) -I $(LINCL)
+FLAGS		:=	$(INCLUDE) -Wall -Wextra
 FLAGS		:=	$(FLAGS) -Werror
 
 ####	DEBUGGING		########################################################
 
-FLAGS		:=	-Wall -Wextra -g
+FLAGS		:=	$(INCLUDE) -Wall -Wextra -g
 
 ####	AUTO SETTING	########################################################
 
-OBJDIR		:=	$(addprefix $(BUILDDIR)/, $(OBJDIR))
-OBJECTS		=	$(addprefix $(OBJDIR)/, $(notdir $(CFILES:%.c=%.o)))
+ODIR		:=	$(addprefix $(BUILDDIR)/, $(ODIR))
+OBJECTS		:=	$(addprefix $(ODIR)/, $(notdir $(CFILES:%.c=%.o)))
 
 ####	UNDER THE HOOD	########################################################
 
 all: $(NAME)
 
+test: test.c
+	@gcc -g $(INCLUDE) $(LIBFT) $^
+
 $(NAME): $(LIBFT) $(OBJECTS)
-	@gcc $(FLAGS) -o $@ -L $(<D) -lft
+	@gcc $(FLAGS) -o $@ -L $(<D) -lft $(OBJECTS)
 
-$(OBJECTS): $(CFILES) | $(OBJDIR)
-	@cd $(@D); gcc -c $(FLAGS) $(abspath $^)
+$(OBJECTS): $(CFILES) | $(ODIR)
+	@cd $(@D); gcc -c $(FLAGS) $^
+#	@cd $(@D); $(foreach srcf, $(abspath $^), gcc -c $(FLAGS) $(srcf);)
 
-$(LIBFT): | $(OBJDIR)
+$(LIBFT): | $(ODIR)
 	@make -C $(@D)
 
-$(OBJDIR):
+$(ODIR):
 	@mkdir -p $@
 
 clean:
-	@rm -rf $(OBJDIR) \
+	@rm -rf $(ODIR);\
 		make clean -C $(dir $(LIBFT))
 
 fclean:
-	@rm -rf $(BUILDDIR) \
+	@rm -rf $(BUILDDIR);\
 		make fclean -C $(dir $(LIBFT))
 
 re: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re test

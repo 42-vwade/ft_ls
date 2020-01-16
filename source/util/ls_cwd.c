@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_include.h                                    :+:      :+:    :+:   */
+/*   ls_cwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 15:11:53 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 19:53:23 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/11 20:58:36 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/11 22:42:50 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_INCLUDE_H
-# define LIBFT_INCLUDE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <math.h>
+#include "ft_ls.h"
 
-#endif
+void
+	ft_cwd(char *argv0, char path[PATH_MAX])
+{
+	int i;
+	int last;
+
+	i = 0;
+	while ((path[i] = argv0[i]) && i < PATH_MAX)
+		last = i++;
+	while (&path[last] >= path && path[last] != '/')
+		last--;
+	if (last > 0)
+		path[last] = 0;
+	else
+		(path[0] = '.') &&
+		(path[1] = 0);
+	return ;
+}

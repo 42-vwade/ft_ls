@@ -7,3 +7,5 @@
 
 ._*
 .DS*
+.libft
+test.c

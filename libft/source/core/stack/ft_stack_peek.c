@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_include.h                                    :+:      :+:    :+:   */
+/*   ft_stack_peek.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 15:11:53 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 19:53:23 by viwade           ###   ########.fr       */
+/*   Created: 2019/09/26 15:54:29 by viwade            #+#    #+#             */
+/*   Updated: 2019/09/26 16:53:32 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_INCLUDE_H
-# define LIBFT_INCLUDE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <math.h>
+#include "libft.h"
 
-#endif
+void
+	*ft_stack_peek(t_stack *stack)
+{
+	if (!stack || !stack->top)
+		return (0);
+	return (stack->top->content);
+}

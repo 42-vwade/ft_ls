@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ls_directory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/21 23:23:05 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/15 20:18:11 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
-# include "../libft/libft.h"
-# include "ft_ls_macros.h"
-# include "ft_ls_structs.h"
+#include "ft_ls.h"
 
-int		ft_ls(t_config);
+t_node
+	*ls_directory(char **v)
+{
+	t_node	*pointer;
 
-#endif
+	pointer = 0;
+	while (*v)
+		ls_node_append(&pointer, ls_node_new(*v++));
+	ls_merge_sort(pointer, ls_strcmp);
+	return (pointer);
+}
