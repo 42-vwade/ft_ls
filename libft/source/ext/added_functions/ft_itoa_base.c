@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 21:58:04 by viwade            #+#    #+#             */
-/*   Updated: 2019/06/11 00:43:37 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/17 20:46:23 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 #include <sys/types.h>
 #define BASE16_LOWER "0123456789abcdef"
 #define BASE16_UPPER "0123456789ABCDEF"
-#define ABS(x) ((x) < 0) ? -(x) : (x)
-#define FT_ITOA_SIZE(x) ((x) < 0) ? 3 : 2
-#define FT_ITOA_PUT(k,n,b,a) (a) = (k)[ABS(n) % b]; n /= b
 
-char	*ft_itoa_base(unsigned long long n, int base)
+static uint8_t
+	f_size(long long n)
+{
+	return ((n < 0) ? 3 : 2);
+}
+
+char
+	*ft_itoa_base(unsigned long long n, int base)
 {
 	size_t		len;
 	uint64_t	tmp;
@@ -28,7 +32,7 @@ char	*ft_itoa_base(unsigned long long n, int base)
 
 	len = 0;
 	key = BASE16_LOWER;
-	size = FT_ITOA_SIZE(n * (base == 10));
+	size = f_size(n * (base == 10));
 	tmp = n;
 	while (tmp /= base)
 		len++;
@@ -38,7 +42,7 @@ char	*ft_itoa_base(unsigned long long n, int base)
 		str[--len] = 0;
 		while (len--)
 		{
-			str[len] = key[ABS(n) % base];
+			str[len] = key[n % base];
 			n /= base;
 		}
 		if (size == 3)

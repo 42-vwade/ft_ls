@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_directory.c                                     :+:      :+:    :+:   */
+/*   ft_pythagorean_theorem.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 21:02:06 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/17 20:40:13 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/17 23:41:54 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include <math.h>
+#include "libft.h"
 
-t_node
-	*ls_collect_paths(char **v)
+long	ft_pythagorean(long a, long b, long c)
 {
-	t_node	*paths;
-
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(*v++));
-	ls_merge_sort(paths, ls_strcmp);
-	return (paths);
+	return ((SQ(a) + SQ(b) + SQ(c)));
 }

@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 19:52:53 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 02:27:19 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 */
 
 typedef struct s_type	t_type;
+typedef struct s_ls		t_ls;
 typedef struct s_main	t_main;
 typedef struct dirent	t_dirent;
 typedef struct stat		t_stat;
@@ -48,6 +49,7 @@ struct	s_entry
 	long		size;
 	char		ctime[13];
 	char		name[NAME_MAX];
+	char		fullname[PATH_MAX];
 	long		name_len;
 	long		size_len;
 	int			uid;
@@ -76,16 +78,32 @@ struct	s_flags
 
 struct	s_parameters
 {
-	int		n;
-	char	**v;
-	t_flags	f;
+	int			n;
+	char		**v;
+	t_flags		f;
+	char		*cwd;
+};
+
+struct	s_ls
+{
+	DIR			*dir;
+	t_dirent	*e;
+	char		*cwd;
+	t_stat		buf;
+	t_node		*list;
+	t_node		*node;
+	long		i;
+	t_flags		flags;
+	t_param		param;
+	t_node		*dirs;
 };
 
 struct	s_main
 {
 	int			argc;
 	char		**argv;
-	char		path[PATH_MAX + 1];
+	char		cwd[PATH_MAX + 1];
+	char		*prgnm;
 	DIR			*dir;
 	t_dirent	*e;
 	t_stat		buf;
@@ -94,7 +112,7 @@ struct	s_main
 	long		i;
 	t_flags		flags;
 	t_param		param;
-	t_list		*jobs;
+	t_node		*jobs;
 };
 
 #endif

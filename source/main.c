@@ -6,40 +6,33 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:01:36 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 19:52:25 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 02:35:55 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#if 0
 
-Comments and the like may freely go here, at least that is the hope.
-
-#endif
-
-static t_param
-	ls_parameters(int n, char **v, t_flags *f)
+static void
+	ls_parameters(t_param *p, int n, char **v)
 {
-	t_param	p;
 	size_t	i;
 
-	p.n = n;
-	while (*v && !(i = 0))
-		while ((v[0][i++] && v[0][0] == '-') || ((v += 1) && 0))
+	p->n = n;
+	while (*v && v[0][0] == '-' && (i = 1))
+		while ((v[0][i]) || ((v += 1) && 0))
 			if (v[0][i] == '-' && ((v += 1) || 1))
 				break ;
 			else if ((v[0][i] == 'l') && ((i += 1) || 1))
-				f->l = 1;
+				p->f.l = 1;
 			else if ((v[0][i] == 'R') && ((i += 1) || 1))
-				f->rr = 1;
+				p->f.rr = 1;
 			else if ((v[0][i] == 'a') && ((i += 1) || 1))
-				f->a = 1;
+				p->f.a = 1;
 			else if ((v[0][i] == 'r') && ((i += 1) || 1))
-				f->r = 1;
+				p->f.r = 1;
 			else if ((v[0][i] == 't') && ((i += 1) || 1))
-				f->t = 1;
-	p.v = v;
-	return (p);
+				p->f.t = 1;
+	p->v = v;
 }
 
 int
@@ -48,14 +41,22 @@ int
 	t_main	m;
 
 	ft_bzero(&m, sizeof(m));
-	ls_cwd(v[0], m.path);
-	if ((m.argc = n) == 1)
-		return (ls_default((m.argv = v)[0]));
-	m.param = ls_parameters(n, m.argv = v, &m.param.f);
-	//	collect args, todo --
-	//	colletc dirs
+	m.prgnm = ft_basename(v[0]);
+	ls_cwd(v[0], m.cwd);
+	if ((n) == 1)
+		return (ls_default(m.cwd));
+	ls_parameters(&m.param, n, &v[1]);
+	if (*m.param.v)
+		m.jobs = ls_collect_paths(m.param.v);
+	if (m.jobs && m.jobs->next)
+		ls_paths(&m.param, m.jobs);
+	else if (m.jobs && (ft_ls(m.param, m.jobs->content) || 1))
+		ft_memdel((void*)&m.jobs);
+	else
+		ft_ls(m.param, m.cwd);
 }
 
 /*
-**
+**	init w/bzero. get cwd. if no param, do default. else do ls.
+**	get params.
 */

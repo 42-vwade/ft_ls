@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_directory.c                                     :+:      :+:    :+:   */
+/*   ft_ls_includes.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 21:02:06 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/03 08:12:53 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/17 23:10:33 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#ifndef FT_LS_INCLUDES_H
+# define FT_LS_INCLUDES_H
+# include <unistd.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/types.h>
+# include <sys/xattr.h>
+# include <dirent.h>
+# include <errno.h>
+# include <stdlib.h>
+# include <string.h>
+# include <limits.h>
+# include <stdio.h>
+# include <time.h>
+# include <pwd.h>
+# include <grp.h>
+# include "libft.h"
 
-t_node
-	*ls_collect_paths(char **v)
-{
-	t_node	*paths;
-
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(*v++));
-	ls_merge_sort(paths, ls_strcmp);
-	return (paths);
-}
+#endif

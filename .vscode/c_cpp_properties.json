@@ -1,19 +1,47 @@
+
 {
+    "env": {
+        "lsPaths": [
+            "${workspaceFolder}/libft/include/*",
+            "${workspaceFolder}/include/*",
+            "${workspaceFolder}/libft",
+            "${workspaceFolder}"
+        ],
+        "myCompilerPath": "/usr/bin/gcc"
+    },
     "configurations": [
         {
-            "name": "Mac",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [],
+            "name": "macosx",
+            "intelliSenseMode": "clang-x64",
             "macFrameworkPath": [
+				"/Library/Developer/CommandLineTools/usr/include/c++/v1",
+				"/usr/local/include",
+				"/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include",
+				"/Library/Developer/CommandLineTools/usr/include",
+				"/usr/include",
+				"/System/Library/Frameworks (framework directory)",
+				"/Library/Frameworks (framework directory)",
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
             ],
+            "defines": [],
+            "forcedInclude": [],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+            "browse": {
+                "path": [
+                    "${lsPaths}"
+                ],
+                "limitSymbolsToIncludedHeaders": false,
+                "databaseFilename": ""
+            },
+            "includePath": [
+                "${workspaceFolder}/libft/include/*",
+                "${workspaceFolder}/include/*",
+                "${workspaceFolder}",
+                "${default}"
+            ]
         }
     ],
     "version": 4

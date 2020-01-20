@@ -16,6 +16,10 @@ CFLAGS		:=	-c $(IFLAGS) -Wall -Werror -Wextra
 FLAGS		:=	$(IFLAGS) -Wall -Wextra
 FLAGS		:=	$(FLAGS) -Werror
 
+####	MACROS		########################################################
+
+MACROS		:=	_TD_LD _TD_D _TD_LL _TD_ULL _TD_BSTR
+
 ####	DEBUGGING		########################################################
 
 FLAGS		:=	$(IFLAGS) -Wall -Wextra -g

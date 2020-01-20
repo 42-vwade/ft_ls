@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:58:36 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/11 22:42:50 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/19 09:42:55 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void
 		last = i++;
 	while (&path[last] >= path && path[last] != '/')
 		last--;
-	if (last > 0)
+	if (path[last] == '/' && ++last < PATH_MAX)
 		path[last] = 0;
-	else
-		(path[0] = '.') &&
-		(path[1] = 0);
 	return ;
 }

@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_directory.c                                     :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 21:02:06 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/17 20:49:59 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/17 20:51:13 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-
-t_node
-	*ls_collect_paths(char **v)
+long	ft_min(long a, long b)
 {
-	t_node	*paths;
-
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(*v++));
-	ls_merge_sort(paths, ls_strcmp);
-	return (paths);
+	return (a < b ? a : b);
 }

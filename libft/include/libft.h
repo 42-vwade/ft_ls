@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:34:03 by viwade            #+#    #+#             */
-/*   Updated: 2019/10/11 01:23:41 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/19 09:49:37 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ FT_VOID			print_64bits(ull_t octal);
 FT_VOID			print_64bits_recursive(ull_t octal);
 FT_VOID			print_hex(unsigned long long int c);
 FT_VOID			print_memory(const FT_VOIDP addr, FT_SIZE size);
-unsigned char	swap_bits(unsigned char octet);
-unsigned char	reverse_bits(unsigned char octet);
+u_int8_t	swap_bits(unsigned char octet);
+u_int8_t	reverse_bits(unsigned char octet);
 void			ft_swap(char *a, char *b);
 void			ft_memswap(const void *a, const void *b);
 
@@ -164,8 +164,20 @@ int64_t			ft_lstlen(t_list *lst);
 int64_t			ft_arrlen(char **ar);
 
 /*
+**	UTILITY
+*/
+
+long	ft_abs(long n);
+long	ft_min(long n);
+long	ft_max(long n);
+long	ft_square(long n);
+long	ft_pythagorean(long a, long b, long c);
+
+/*
 **	String Modifiers
 */
+
+char	*ft_basename(char *path);
 
 /*
 **	Conversion
@@ -190,6 +202,7 @@ size_t			slen(const char *s, size_t maxsize);
 **	Math
 */
 
+ld_t			ft_abs(long double n);
 ld_t			ft_sqrt(long double n);
 ld_t			ft_sqroot(long double n);
 

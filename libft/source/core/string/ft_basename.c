@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_directory.c                                     :+:      :+:    :+:   */
+/*   ft_basename.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 21:02:06 by viwade           ###   ########.fr       */
+/*   Created: 2019/10/20 20:04:44 by viwade            #+#    #+#             */
+/*   Updated: 2019/10/22 08:44:04 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-t_node
-	*ls_collect_paths(char **v)
+char	*ft_basename(char *path)
 {
-	t_node	*paths;
+	long	len;
 
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(*v++));
-	ls_merge_sort(paths, ls_strcmp);
-	return (paths);
+	if (!path)
+		return (0);
+	len = ft_strlen(path);
+	while (path < &path[len])
+		if (path[--len] == '/')
+			return (&path[++len]);
+	return (path);
 }
