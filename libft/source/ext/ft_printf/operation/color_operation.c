@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 22:57:50 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:44 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:15:48 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static int
 	return (0);
 }
 
-static ull_t
+static uint64_t
 	synthesize_color(char *s)
 {
 	char	bright;
 	char	*tmp;
-	ull_t	col;
+	uint64_t	col;
 
 	MATCH(!s, RET(0));
 	col = 0;
@@ -77,7 +77,7 @@ static ull_t
 
 int	parse_a(t_format *o)
 {
-	ull_t	color;
+	uint64_t	color;
 
 	color = 0;
 	MATCH(!o->color, o->color = 1);

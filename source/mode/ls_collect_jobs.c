@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quicksort.c.m                                      :+:      :+:    :+:   */
+/*   ls_collect_jobs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 10:30:05 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 18:56:29 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/20 02:48:03 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-/*
-**	Last element pick.
-*/
-
-static t_list
-	*qs_queue(t_stack *stack, t_node *last)
+t_node
+	*ls_collect_paths(char **v)
 {
+	t_node	*paths;
 
-}
-
-void
-	ls_quicksort(t_stack *stack)
-{
-	t_quicksort	qs;
-
-	if (!stack || !stack->top)
-		ft_error("ls_sort: invalid stack");
-	list = qs_queue(node)
-
+	paths = 0;
+	while (*v)
+		ls_node_append(&paths, ls_node_new(*v++));
+	ls_merge_sort(paths, ls_strcmp);
+	return (paths);
 }

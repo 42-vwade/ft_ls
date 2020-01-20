@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 02:27:19 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 11:46:49 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ struct	s_entry
 	long		size;
 	char		ctime[13];
 	char		name[NAME_MAX];
+	char		link[PATH_MAX];
+	char		name_ext[NAME_MAX + 4 + PATH_MAX];
 	char		fullname[PATH_MAX];
 	long		name_len;
 	long		size_len;
@@ -59,7 +61,6 @@ struct	s_entry
 	t_grp		grp;
 	t_time		time;
 	int			hidden;
-	t_dirent	*e;
 };
 
 struct	s_flags
@@ -88,7 +89,10 @@ struct	s_ls
 {
 	DIR			*dir;
 	t_dirent	*e;
+	t_entry		*cur;
 	char		*cwd;
+	uint64_t	maxlen;
+	int			blocks;
 	t_stat		buf;
 	t_node		*list;
 	t_node		*node;

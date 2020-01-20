@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_length.c                                 :+:      :+:    :+:   */
+/*   ft_pythagorean.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 20:40:13 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/18 01:39:07 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:06:24 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "libft.h"
 
-long	ft_length3(long a, long b, long c)
+double_t	ft_pythagorean_theorem(int64_t a, int64_t b, int64_t c)
 {
 	return (sqrt(SQ(a) + SQ(b) + SQ(c)));
 }

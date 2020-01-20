@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:34:03 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 12:23:36 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:24:28 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@
 **		STANDARD OUTPUT
 */
 
-uint32_t	ft_printf(const char *format, ...);
-uint32_t	ft_vprintf(const char *format, va_list ap);
-void		ft_putchar(uint32_t c);
-void		ft_putchar_fd(char c, uint32_t fd);
+int32_t		ft_printf(const char *format, ...);
+int32_t		ft_vprintf(const char *format, va_list ap);
+void		ft_putchar(int32_t c);
+void		ft_putchar_fd(char c, int32_t fd);
 void		ft_putwchar(uint32_t wc);
 size_t		write_utf8(uint32_t wc);
-size_t		write_utf8_fd(uint32_t wc, uint32_t fd);
+size_t		write_utf8_fd(uint32_t wc, int32_t fd);
 size_t		print_utf8(uint32_t *int32_str);
 size_t		print_utf8_n(uint32_t *int32_str, size_t length);
-caddr_t		encode_utf8(uint32_t *wc);
-caddr_t		encode_utf8_w(uint32_t *l_str, size_t bytes_allowed);
+caddr_t		encode_utf8(int32_t *wc);
+caddr_t		encode_utf8_w(int32_t *l_str, size_t bytes_allowed);
 void		ft_putstr(char const *s);
-void		ft_putstr_fd(char const *s, uint32_t fd);
+void		ft_putstr_fd(char const *s, int32_t fd);
 void		ft_putendl(char const *s);
-void		ft_putendl_fd(char const *s, uint32_t fd);
+void		ft_putendl_fd(char const *s, int32_t fd);
 void		ft_putnbr(int64_t number);
-void		ft_putnbr_fd(int64_t number, uint32_t file_descriptor);
+void		ft_putnbr_fd(int64_t number, int32_t file_descriptor);
 void		ft_putnbr_u(uint32_t number);
 void		print_float(float n, size_t precision);
 void		print_double(double_t value, uint32_t precision);
@@ -51,7 +51,7 @@ size_t		write_infinite_double(double_t value, uint64_t precision);
 
 int32_t		*ft_strtoi(char *str);
 int64_t		*ft_strtol(char *str);
-uint32_t	*str_utf8(wchar_t *l_str);
+int32_t		*str_utf8(wchar_t *l_str);
 int64_t		ft_power(long long int_base, uint32_t int_power);
 
 /*
@@ -59,10 +59,10 @@ int64_t		ft_power(long long int_base, uint32_t int_power);
 */
 
 void		ft_free(void *ap);
-void		*ft_memset(void *b, uint32_t c, size_t len);
+void		*ft_memset(void *b, int32_t c, size_t len);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
-void		*ft_memccpy(void *dst, const void *src, uint32_t c, size_t n);
+void		*ft_memccpy(void *dst, const void *src, int32_t c, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t n);
 void		*ft_memchr(const void *s, uint32_t c, size_t n);
 char		ft_cmp(size_t a, size_t b);
@@ -73,24 +73,24 @@ char		*ft_strncpy(char *dst, const char *src, size_t len);
 char		*ft_strcat(char *s1, const char *s2);
 char		*ft_strncat(char *s1, const char *s2, size_t n);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
-char		*ft_strchr(const char *s, uint32_t c);
-char		*ft_strrchr(const char *s, uint32_t c);
+char		*ft_strchr(const char *s, int32_t c);
+char		*ft_strrchr(const char *s, int32_t c);
 char		*ft_strstr(const char *haystack, const char *needle);
 char		*ft_strnstr(const char *haystack,
 					const char *needle, size_t len);
-uint32_t	ft_strcmp(const char *s1, const char *s2);
-uint32_t	ft_strncmp(const char *s1, const char *s2, size_t n);
+int32_t		ft_strcmp(const char *s1, const char *s2);
+int32_t		ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*splice_str(char *source, char *fragment, size_t ndx);
 char		*search_and_splice(char *source, char *needle, char *fragment);
 char		*ft_strcapitalize(char *s);
-uint32_t	ft_isalpha(uint32_t c);
-uint32_t	ft_isdigit(uint32_t c);
-uint32_t	ft_isalnum(uint32_t c);
-uint32_t	ft_isascii(uint32_t c);
-uint32_t	ft_isprint(uint32_t c);
-uint32_t	ft_isuppercase(char c);
-uint32_t	ft_toupper(uint32_t c);
-uint32_t	ft_tolower(uint32_t c);
+int32_t		ft_isalpha(int32_t c);
+int32_t		ft_isdigit(int32_t c);
+int32_t		ft_isalnum(int32_t c);
+int32_t		ft_isascii(int32_t c);
+int32_t		ft_isprint(int32_t c);
+int32_t		ft_isuppercase(char c);
+int32_t		ft_toupper(uint32_t c);
+int32_t		ft_tolower(uint32_t c);
 void		ft_strtoupper(char **str);
 void		ft_strtolower(char **str);
 void		*ft_memalloc(size_t size);
@@ -103,8 +103,8 @@ void		ft_striter(char *s, void (*f)(char *));
 void		ft_striteri(char *s, void (*f)(uint32_t, char *));
 char		*ft_strmap(char const *s, char (*f)(char));
 char		*ft_strmapi(char const *s, char (*f)(uint32_t, char));
-uint32_t	ft_strequ(char const *s1, char const *s2);
-uint32_t	ft_strnequ(char const *s1, char const *s2, size_t n);
+int32_t		ft_strequ(char const *s1, char const *s2);
+int32_t		ft_strnequ(char const *s1, char const *s2, size_t n);
 char		*ft_strsub(char const *s, size_t start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s);
@@ -137,8 +137,19 @@ void		ft_lstpush(t_list **list, t_list *new);
 void		ft_lstpop(t_list **list);
 void		**ft_lst2arr(t_list *lst);
 void		ft_error(const char *message);
-char		*ft_append(const char *s1, const char *s2, uint32_t mode);
+char		*ft_append(const char *s1, const char *s2, int32_t mode);
 char		*ft_strjoin_free(char const *s1, char const *s2);
+
+/*
+**	Utility
+*/
+
+long		ft_abs(long n);
+long		ft_min(int64_t a, int64_t b);
+long		ft_max(int64_t a, int64_t b);
+long		ft_square(int64_t n);
+double_t	ft_pythagorean_theorem(int64_t a, int64_t b, int64_t c);
+double_t	ft_vector_length(t_v3d vector);
 
 /*
 **	Write to Standard Output
@@ -158,7 +169,7 @@ size_t		ft_strlen(const char *s);
 int64_t		ft_wstrlen(wchar_t *s);
 size_t		ft_lstrlen(const wchar_t *s);
 size_t		ft_intlen(uint64_t value);
-int64_t		ft_intlen_base(uint64_t value, uint32_t base);
+int64_t		ft_intlen_base(uint64_t value, int32_t base);
 int64_t		ft_lstlen(t_list *lst);
 int64_t		ft_arrlen(char **ar);
 

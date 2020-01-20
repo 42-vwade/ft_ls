@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 14:36:22 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 19:55:06 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 13:23:16 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ typedef struct s_128b	t_128b;
 typedef struct s_node	t_node;
 typedef struct s_stack	t_stack;
 typedef struct s_queue	t_queue;
+typedef struct s_v3d	t_v3d;
+
+struct	s_v3d
+{
+	double_t	x;
+	double_t	y;
+	double_t	z;
+};
 
 struct	s_node
 {

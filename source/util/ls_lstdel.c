@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ls_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/31 02:20:13 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 13:36:15 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/20 03:23:50 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/20 03:27:28 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-int		ft_isalnum(int c)
+void	ls_lstdel(t_node *node)
 {
-	if (ft_isascii(c) && (ft_isalpha(c) || ft_isdigit(c)))
-		return (1);
-	else
-		return (0);
+	if (node)
+		ls_lstdel(node->next);
+	ft_memdel(&node);
 }

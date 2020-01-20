@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 05:19:07 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:44 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:16:34 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@
 /*FT_VOID
 	length_o(t_format *o)
 {
-	ull_t	*num;
-	ull_t	lm;
+	uint64_t	*num;
+	uint64_t	lm;
 	char	c;
 
 	c = o->str[0];
@@ -61,13 +61,13 @@
 	if (lm & l)
 		IF_E(c, APPLY_L(num[0], unsigned long), APPLY_L(num[0], long))
 	if (lm & ll)
-		IF_E(c, APPLY_L(num[0], ull_t), APPLY_L(num[0], ll_t))
+		IF_E(c, APPLY_L(num[0], uint64_t), APPLY_L(num[0], int64_t))
 	if (lm & j)
 		IF_E(c, APPLY_L(num[0], uintmax_t), APPLY_L(num[0], intmax_t))
 	if (lm & z || lm & t)
 		IF_E(c, APPLY_L(num[0], size_t), APPLY_L(num[0], ssize_t))
 	if (lm & LD)
-		IF_E(c == 'f', APPLY_L(num[0], ld_t), APPLY_L(num[0], double))
+		IF_E(c == 'f', APPLY_L(num[0], double_t), APPLY_L(num[0], double))
 }//*/
 
 /*
@@ -79,7 +79,7 @@ FT_STR
 {
 	FT_STR	pad;
 
-	o->p.width = MAX((ll_t)(o->p.width - ft_strlen(o->v)), 0);
+	o->p.width = MAX((int64_t)(o->p.width - ft_strlen(o->v)), 0);
 	if (!o->p.width)
 		return (ft_strdup(""));
 	pad = ft_strnew(o->p.width + 1);

@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 00:37:49 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 12:10:53 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:22:25 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,25 @@ typedef unsigned long	t_ul;
 **	--	DATA TYPE SHORTHAND	--
 */
 
-# define LL	FT_LL
-# define ULL FT_ULL
-# define NBR t_num
-# define RET		return
-# define RETURN		return
-# define BREAK		break
+# define LL		int64_t
+# define ULL	uint64_t
+# define NBR	t_num
+# define RET	return
+# define RETURN	return
+# define BREAK	break
 
 # define ABS	ft_abs
 # define MIN	ft_min
 # define MAX	ft_max
 # define SQ		ft_square
-# define PYTH	ft_pythagorean
+# define PYTH	ft_pythagorean_theorem
 
 /*
 **	TYPE DEFINITION
 **	define _TD_LD	typedef long double ld_t
 **	define _TD_D	typedef double	db_t
-**	define _TD_LL	typedef long long	ll_t
-**	define _TD_ULL	typedef unsigned long long	ull_t
+**	define _TD_LL	typedef long long	int64_t
+**	define _TD_ULL	typedef unsigned long long	uint64_t
 **	define _TD_BSTR	typedef struct s_byte_string bstr_t
 */
 

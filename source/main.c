@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:01:36 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 02:35:55 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 05:48:23 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int
 		m.jobs = ls_collect_paths(m.param.v);
 	if (m.jobs && m.jobs->next)
 		ls_paths(&m.param, m.jobs);
-	else if (m.jobs && (ft_ls(m.param, m.jobs->content) || 1))
+	else if (m.jobs && (ft_ls(&m.param, m.jobs->content) || 1))
 		ft_memdel((void*)&m.jobs);
 	else
-		ft_ls(m.param, m.cwd);
+		ft_ls(&m.param, m.cwd);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 18:05:10 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:44 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:31:03 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ static void
 	sign_i(t_format *o)
 {
 	o->sign = 0;
-	MATCH(ft_strchr("ubox", ft_tolower(*o->str)), RET);
-	MATCH(!((plus + space + neg) & o->p.flags), RET);
-	MATCH(o->p.flags & space, o->sign = " ");
-	OR(o->p.flags & plus, o->sign = "+");
-	OR(o->p.flags & neg, o->sign = "-");
+	if (ft_strchr("ubox", ft_tolower(*o->str)) ||
+			!((plus + space + neg) & o->p.flags))
+		RET;
+	((o->p.flags & space) && (o->sign = " ")) ||
+	((o->p.flags & plus) && (o->sign = "+")) ||
+	((o->p.flags & neg) && (o->sign = "-"));
 	if (((char*)o->v)[0] == '-' && o->sign && *o->sign == '-')
 	{
 		o->tmp = o->v;
@@ -70,8 +71,8 @@ void
 	precision_o(t_format *o)
 {
 	o->len = ft_strlen(o->v);
-	MATCH(o->p.tick & 4, o->p.precision = MAX(o->p.precision, o->len));
-	ELSE(o->p.precision = o->len);
+	((o->p.tick & 4) && (o->p.precision = MAX(o->p.precision, o->len))) ||
+	(o->p.precision = o->len);
 	o->len = o->p.precision;
 }
 
@@ -79,10 +80,12 @@ void
 	precision_i(t_format *o)
 {
 	sign_i(o);
-	MATCH(ft_tolower(*o->str) != 'p' && !(o->p.tick & 4), RET);
+	if (ft_tolower(*o->str) != 'p' && !(o->p.tick & 4))
+		RET;
 	o->len = ft_strlen(o->v);
-	o->p.precision = MAX((ll_t)(o->p.precision - o->len), 0);
-	MATCH(!o->p.precision, RET);
+	o->p.precision = MAX((int64_t)(o->p.precision - o->len), 0);
+	if (!o->p.precision)
+		RET;
 	o->z_pad = ft_memset(ft_strnew(o->p.precision), '0', o->p.precision);
 }
 

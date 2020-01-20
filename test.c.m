@@ -21,14 +21,14 @@ static void
 {
 	size_t	i = 0;
 	int		pad;
-	ull_t	*info_elems;
+	uint64_t	*info_elems;
 	char	**info_type;
 	char	**info_field;
 	char	**info_info;
 
 	if (!info)
 		return ;
-	info_elems = (ull_t[]){
+	info_elems = (uint64_t[]){
 		info->st_dev, info->st_ino, info->st_nlink, info->st_uid,
 		info->st_gid, info->st_rdev, info->st_size, info->st_blksize,
 		info->st_blocks, 0, 0, 0

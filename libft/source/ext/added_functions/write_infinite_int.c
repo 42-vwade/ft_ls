@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pythagorean_theorem.c                           :+:      :+:    :+:   */
+/*   write_infinite_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/17 20:40:13 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/17 23:41:54 by viwade           ###   ########.fr       */
+/*   Created: 2019/05/30 15:41:29 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/20 13:09:50 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "libft.h"
 
-long	ft_pythagorean(long a, long b, long c)
+FT_STR
+	infinite_int(int64_t n)
 {
-	return ((SQ(a) + SQ(b) + SQ(c)));
+	char	*nbr;
+	char	*tmp;
+
+	tmp = NULL;
+	nbr = ft_strdup("");
+	if (n < 0 ? (n = ABS(n)) : 0)
+		nbr = ft_strjoin_free(ft_strdup("-"), nbr);
+	if (n >= 10 && (tmp = infinite_int(n / 10)))
+		nbr = ft_strjoin_free(tmp, (char[2]){n % 10 + 48, 0});
+	if (tmp)
+		free(tmp);
+	return (nbr);
 }

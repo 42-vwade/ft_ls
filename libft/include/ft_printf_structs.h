@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 19:01:40 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/19 19:00:11 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:07:33 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ U_DOUBLE;
 
 union	u_double
 {
-	ULL		ld;
-	double	d;
+	uint64_t	ld;
+	double		d;
 };
 
 /*
@@ -73,11 +73,11 @@ typedef int	(*t_func) (t_format *);
 */
 struct	s_param
 {
-	ull_t	tick;
-	ull_t	flags;
-	ull_t	width;
-	ull_t	precision;
-	ull_t	length;
+	uint64_t	tick;
+	uint64_t	flags;
+	uint64_t	width;
+	uint64_t	precision;
+	uint64_t	length;
 };
 
 struct	s_format

@@ -11,6 +11,8 @@
 		"grp.h": "c",
 		"libft_macros.h": "c",
 		"limits.h": "c",
-		"pwd.h": "c"
+		"pwd.h": "c",
+		"stdint.h": "c",
+		"ratio": "c"
 	}
 }

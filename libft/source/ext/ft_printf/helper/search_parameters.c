@@ -6,14 +6,14 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 00:49:18 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:21 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:15:48 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static void
-	search_flags(ull_t *set, const char *f, size_t *len, size_t *i)
+	search_flags(uint64_t *set, const char *f, size_t *len, size_t *i)
 {
 	set[0] = 0;
 	while (*i < *len || (*i = 0))
@@ -42,7 +42,7 @@ static void
 }
 
 static int
-	search_width(t_format *o, ull_t *w, const char *f, size_t *i)
+	search_width(t_format *o, uint64_t *w, const char *f, size_t *i)
 {
 	w[0] = 0;
 	while (*i < o->len && f[*i] != '.' && f[*i] != '*' &&
@@ -61,7 +61,7 @@ static int
 }
 
 static int
-	search_precision(t_format *o, ull_t *p, const char *f, size_t *i)
+	search_precision(t_format *o, uint64_t *p, const char *f, size_t *i)
 {
 	p[0] = 0;
 	while (*i < o->len && f[*i] != '.')
@@ -82,7 +82,7 @@ static int
 }
 
 static void
-	search_length(ull_t *set, const char *f, size_t *len, size_t *i)
+	search_length(uint64_t *set, const char *f, size_t *len, size_t *i)
 {
 	i[0] = 0;
 	set[0] = sizeof(int);

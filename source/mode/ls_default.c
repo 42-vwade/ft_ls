@@ -6,14 +6,17 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:51:47 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 21:02:54 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 12:21:32 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 int
-	ls_default(t_param *p, char *path)
+	ls_default(char *path)
 {
-	ft_ls(p[0], path);
+	t_param	p;
+
+	ft_bzero(&p, sizeof(p));
+	return (ft_ls(&p, path));
 }
