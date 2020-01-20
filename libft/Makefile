@@ -18,7 +18,11 @@ FLAGS		:=	$(FLAGS) -Werror
 
 ####	MACROS		########################################################
 
-MACROS		:=	_TD_LD _TD_D _TD_LL _TD_ULL _TD_BSTR
+MACROS		:=	_TD_LD
+# define _TD_D=typedef double	db_t
+# define _TD_LL=typedef long long	ll_t
+# define _TD_ULL=typedef unsigned long long	ull_t
+# define _TD_BSTR=typedef struct s_byte_string bstr_t
 
 ####	DEBUGGING		########################################################
 
