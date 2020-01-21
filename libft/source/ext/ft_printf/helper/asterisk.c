@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 02:21:55 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:21 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 11:56:35 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int
 
 	i = 0;
 	va_copy(ap, v_ap);
-	MATCH((*(f++) != '*'), RET(0));
-	MATCH(!ft_isdigit(*f), RET(va_arg(ap, int)));
+	if ((*(f++) != '*'))
+		RET(0);
+	if (!ft_isdigit(*f))
+		RET(va_arg(ap, int));
 	(args = ft_atoi(f))
 		|| (args = 1);
 	while (args--)

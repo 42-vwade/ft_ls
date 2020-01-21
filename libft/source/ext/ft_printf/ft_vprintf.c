@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 04:39:52 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/18 04:25:54 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 12:24:59 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
-static char
-	*format_convert(t_format *o, const char *format, size_t *i)
+static void
+	format_convert(t_format *o, const char *format, size_t *i)
 {
 	++i[0];
 	o->pad = 0;
@@ -24,13 +24,13 @@ static char
 	o->prefix = 0;
 	o->p.length = 4;
 	if (!(o->len = find_specifier(o, format)))
-		return (NULL);
+		return ;
 	i[0] += o->len--;
 	search_parameters(o, &format[1]);
 	o->f(o);
-	(ft_strchr("%c", ft_tolower(*o->str)) &&
-	(o->encode = ft_append(o->encode, o->v, 3))) ||
-	(o->encode = encode_output(o->encode, o->v));
+	(ft_strchr("%c", ft_tolower(*o->str))
+	&& ((o->encode = ft_append(o->encode, o->v, 3)) || 1))
+	|| (o->encode = encode_output(o->encode, o->v));
 }
 
 static size_t
@@ -60,10 +60,10 @@ static void
 		i += tonext;
 		if (format[i] && format[i] == '%')
 			format_convert(o, &format[i], &i);
-		MATCH(o->color && !format[i],
-			o->encode = encode_output(o->encode, ft_strdup("\x1b[0m")));
+		(o->color && !format[i])
+		&& (o->encode = encode_output(o->encode, ft_strdup("\x1b[0m")));
 	}
-	MATCH(o->encode, o->output = decode_output(o->encode, &o->write));
+	(o->encode) && (o->output = decode_output(o->encode, &o->write));
 }
 
 static void

@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:34:03 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 15:00:04 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 12:27:03 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void		ft_lstadd(t_list **alst, t_list *newnode);
 void		ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-void		print_bits(uint32_t octal);
+void		print_bits(int32_t octal);
 void		print_64bits(uint64_t octal);
 void		print_64bits_recursive(uint64_t octal);
 void		print_hex(uint64_t c);
@@ -131,7 +131,7 @@ uint8_t		reverse_bits(uint8_t octet);
 void		ft_swap(char *a, char *b);
 void		ft_memswap(const void *a, const void *b);
 
-uint32_t	ft_astrcmp(char **s1, char **s2);
+int32_t		ft_astrcmp(char **s1, char **s2);
 void		ft_del(void *ap, size_t len);
 void		ft_lstpush(t_list **list, t_list *new);
 void		ft_lstpop(t_list **list);
@@ -160,7 +160,7 @@ char		ft_any2(long match, long criterion_a, long criterion_b);
 **	FILE I/O
 */
 
-uint32_t	get_next_line(const uint32_t fd, char **line);
+int32_t		get_next_line(const int32_t fd, char **line);
 
 /*
 **	Length Getters

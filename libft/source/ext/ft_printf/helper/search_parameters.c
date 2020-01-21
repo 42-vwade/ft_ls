@@ -6,11 +6,12 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 00:49:18 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:15:48 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 12:20:02 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#define _TL ft_tolower
 
 static void
 	search_flags(uint64_t *set, const char *f, size_t *len, size_t *i)
@@ -20,24 +21,25 @@ static void
 	{
 		if (('1' <= f[*i] && f[*i] <= '9') || f[*i] == '.')
 			break ;
-		MATCH(f[*i] == '+', set[0] = (set[0] | plus) & ~space);
-		OR(f[*i] == '-', set[0] = (set[0] | minus) & ~zero);
-		OR(f[*i] == '0', set[0] |= !(minus & set[0]) << 2);
-		OR(f[*i] == '#', set[0] |= hash);
-		OR(f[*i] == ' ', set[0] |= !(plus & set[0]) << 4);
+		((f[*i] == '+') && ((set[0] = (set[0] | plus) & ~space) || 1))
+		|| ((f[*i] == '-') && ((set[0] = (set[0] | minus) & ~zero) || 1))
+		|| ((f[*i] == '0') && ((set[0] |= !(minus & set[0]) << 2) || 1))
+		|| ((f[*i] == '#') && ((set[0] |= hash) || 1))
+		|| ((f[*i] == ' ') && ((set[0] |= !(plus & set[0]) << 4) || 1));
 		*i = *i + 1;
-		MATCH(*i == *len && !(*i = 0), RET);
+		if (*i == *len && !(*i = 0))
+			RET;
 	}
 	while (*i < *len && (('0' <= f[*i] && f[*i] <= '9') || f[*i] == '.'))
 		*i = *i + 1;
 	while (*i < *len || (*i = 0))
 	{
-		MATCH(f[*i] == '+', set[0] = (set[0] | plus) & ~(space));
-		OR(f[*i] == '-', set[0] = (set[0] | minus) & ~(zero));
-		OR(f[*i] == '0', set[0] |= !(minus & set[0]) << 2);
-		OR(f[*i] == '#', set[0] |= 1 << 3);
-		OR(f[*i] == ' ', set[0] |= !(plus & set[0]) << 4);
-		ELSE(*i = *i + 1);
+		((f[*i] == '+') && ((set[0] = (set[0] | plus) & ~(space)) || 1))
+		|| ((f[*i] == '-') && ((set[0] = (set[0] | minus) & ~(zero)) || 1))
+		|| ((f[*i] == '0') && ((set[0] |= !(minus & set[0]) << 2) || 1))
+		|| ((f[*i] == '#') && ((set[0] |= 1 << 3) || 1))
+		|| ((f[*i] == ' ') && ((set[0] |= !(plus & set[0]) << 4) || 1))
+		|| ((*i = *i + 1));
 	}
 }
 
@@ -48,13 +50,13 @@ static int
 	while (*i < o->len && f[*i] != '.' && f[*i] != '*' &&
 			!('1' <= f[*i] && f[*i] <= '9'))
 		*i = *i + 1;
-	MATCH(f[*i] == '*', (*i += 1)
-		&& (w[0] = va_arg(o->ap, int)));
-	MATCH(w[0] >= (unsigned long)0x80 << ((sizeof(w[0]) - 1) * 8),
-	(o->p.flags = minus)
-		&& (w[0] = ~(w[0] - 1)));
-	MATCH(!ft_isdigit(f[*i]), RET(0));
-	ELSE(w[0] = ft_atoi(&f[*i]));
+	((f[*i] == '*')
+	&& ((*i += 1) && (w[0] = va_arg(o->ap, int))));
+	((w[0] >= (unsigned long)0x80 << ((sizeof(w[0]) - 1) * 8))
+	&& ((o->p.flags = minus)
+	&& (w[0] = ~(w[0] - 1))));
+	if (ft_isdigit(f[*i]) && ((w[0] = ft_atoi(&f[*i])) && 0))
+		RET(0);
 	while (*i < o->len && ('0' <= f[*i] && f[*i] <= '9'))
 		*i = *i + 1;
 	RET(0);
@@ -66,16 +68,15 @@ static int
 	p[0] = 0;
 	while (*i < o->len && f[*i] != '.')
 		*i += 1;
-	MATCH(f[*i] == '.', (o->p.tick |= 1 << 2)
-		&& (*i += 1));
-	ELSE(RET(0));
-	MATCH(f[*i] == '*', (p[0] = va_arg(o->ap, int)));
-	MATCH(p[0] >= (unsigned long)0x80 << ((sizeof(p[0]) - 1) * 8), !(p[0] = 0)
-		&& (o->p.tick &= ~(1 << 2)));
-	OR(f[*i] == '*', o->p.tick |= 1 << 6);
-	MATCH(f[*i] == '*', (*i += 1));
-	MATCH(!('0' <= f[*i] && f[*i] <= '9'), RET(0));
-	ELSE(p[0] = ft_atoi(&f[*i]));
+	if (!((f[*i] == '.') && (((o->p.tick |= 1 << 2) && (*i += 1)) || 1)))
+		RET(0);
+	(f[*i] == '*') && ((p[0] = va_arg(o->ap, int)));
+	((p[0] >= (unsigned long)0x80 << ((sizeof(p[0]) - 1) * 8)) && ((!(p[0] = 0)
+	&& (o->p.tick &= ~(1 << 2))) || 1))
+	|| ((f[*i] == '*') && (o->p.tick |= 1 << 6));
+	(f[*i] == '*') && ((*i += 1));
+	if (('0' <= f[*i] && f[*i] <= '9') && ((p[0] = ft_atoi(&f[*i])) && 0))
+		RET(0);
 	while (*i < o->len && ('0' <= f[*i] && f[*i] <= '9'))
 		*i = *i + 1;
 	RET(0);
@@ -88,12 +89,12 @@ static void
 	set[0] = sizeof(int);
 	while (*i < *len && !ft_strchr("hlLjzt", f[*i]))
 		*i = *i + 1;
-	MATCH(f[*i] == 'h', set[0] = (f[*i + 1] == 'h') ? hh : h);
-	OR(f[*i] == 'L', set[0] = LD);
-	OR(f[*i] == 'l', set[0] = (ft_tolower(f[*i + 1]) == 'l') ? ll : l);
-	OR(f[*i] == 'j', set[0] = j);
-	OR(f[*i] == 'z', set[0] = z);
-	MATCH(set[0] != 4, *i += 1 + (set[0] & (ll + hh)));
+	((f[*i] == 'h') && ((set[0] = (f[*i + 1] == 'h') ? hh : h) || 1))
+	|| ((f[*i] == 'L') && ((set[0] = LD) || 1))
+	|| ((f[*i] == 'l') && ((set[0] = (_TL(f[*i + 1]) == 'l') ? ll : l) || 1))
+	|| ((f[*i] == 'j') && ((set[0] = j) || 1))
+	|| ((f[*i] == 'z') && ((set[0] = z) || 1));
+	(set[0] != 4) && (*i += 1 + (set[0] & (ll + hh)));
 }
 
 void

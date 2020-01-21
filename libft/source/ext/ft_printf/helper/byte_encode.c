@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 22:26:11 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:21 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 11:58:30 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static char
 	i = 0;
 	buf[1] = 0;
 	len = ft_strlen(s);
-	MATCH(!(new = ft_strnew(len / 2)), ft_error("fatal: decode string failed"));
+	if (!(new = ft_strnew(len / 2)))
+		ft_error("fatal: decode string failed");
 	while (i < len)
 	{
 		buf[0] = (s[i] & 0x0f) | ((s[i + 1] & 0x0f) << 4);
@@ -46,7 +47,8 @@ static char
 	buf[2] = 0;
 	(len = ft_strlen(s))
 		|| (len = 1);
-	MATCH(!(new = ft_strnew(len * 2)), ft_error("fatal: encode string failed"));
+	if (!(new = ft_strnew(len * 2)))
+		ft_error("fatal: encode string failed");
 	while (i < len)
 	{
 		buf[0] = 0xf0 | (s[i] & 0x0f);
@@ -62,9 +64,10 @@ char
 {
 	char	*encode;
 
-	MATCH(!output, RET((char *)data));
-	MATCH(!data, encode = encode_str(output));
-	ELSE(encode = ft_append(data, encode_str(output), 3));
+	if (!output)
+		RET((char *)data);
+	((!data) && ((encode = encode_str(output)) || 1))
+	|| (encode = ft_append(data, encode_str(output), 3));
 	ft_memdel((void **)&output);
 	return (encode);
 }
@@ -74,8 +77,8 @@ char
 {
 	char	*decode;
 
-	MATCH(data, decode = decode_str(data, len));
-	ELSE(decode = ft_strnew(0));
+	((data) && ((decode = decode_str(data, len)) || 1))
+	|| (decode = ft_strnew(0));
 	ft_memdel((void **)&data);
 	return (decode);
 }
