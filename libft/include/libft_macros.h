@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 00:37:49 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:22:25 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 14:51:08 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef unsigned long	t_ul;
 # define RET	return
 # define RETURN	return
 # define BREAK	break
+# define ANY2	ft_any2
 
 # define ABS	ft_abs
 # define MIN	ft_min

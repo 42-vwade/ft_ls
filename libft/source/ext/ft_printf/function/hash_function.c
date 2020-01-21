@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 00:45:55 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:44 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 15:00:45 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void
 	char	c;
 	char	z;
 
-	MATCH(!(hash & o->p.flags), RET);
+	if (!(hash & o->p.flags))
+		RET;
 	c = ft_tolower(o->str[0]);
 	z = !ft_atoi(o->v);
 	if (ft_cmp(c, 'o') && !o->z_pad

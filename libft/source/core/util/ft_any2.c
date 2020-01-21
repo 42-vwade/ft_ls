@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_any2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/01 19:25:34 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:58:19 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/20 14:40:24 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/20 14:52:46 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-void
-	ft_putnbr_fd(long long int n, int fd)
+char	ft_any2(long c, long a, long b)
 {
-	long	len;
-	long	tmp;
-
-	tmp = n;
-	len = 1;
-	if (n < 0)
-		write(fd, "-", 1);
-	while (tmp /= 10)
-		len *= 10;
-	while (len)
-	{
-		write(fd, &"0123456789"[ABS(n / len)], 1);
-		n %= len;
-		len /= 10;
-	}
+	return (a == c || b == c);
 }

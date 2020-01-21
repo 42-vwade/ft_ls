@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:34:03 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:24:28 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 15:00:04 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ long		ft_max(int64_t a, int64_t b);
 long		ft_square(int64_t n);
 double_t	ft_pythagorean_theorem(int64_t a, int64_t b, int64_t c);
 double_t	ft_vector_length(t_v3d vector);
+char		ft_any2(long match, long criterion_a, long criterion_b);
 
 /*
 **	Write to Standard Output

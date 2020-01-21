@@ -6,36 +6,11 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 06:01:13 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:16:02 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 15:49:30 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#define U_VLS(u) ((u)=='o'||(u)=='u'||(u)=='x')
-#define TYPE (ft_tolower(o->str[0]) == 'u') ? (uint64_t *) : (int64_t *)
-#define SIGN_M(f,a,b,c) C_M(f,a,c)?'+':C_M(f,b,c)?' ':'-'
-#define IS_SIGNED(l) (((l)=='u')? 0 : 1)
-#define VA_ASN(type)	va_arg(ap, type)
-#define VA_I(t,a,u)	((u)?(unsigned t)va_arg(a,int):(signed t)va_arg(a,int))
-#define VA_U(t,a,u)	((u)?(unsigned t)va_arg(a,t):(signed t)va_arg(a,t))
-#define FI_C(c,v)	(c&(h)?(char)(*(char*)v):(int)*(int*)v)
-#define FI_S(c,v)	(c&(h)?(short)(*(short*)v):FI_C(c,v))
-#define FI_L(c,v)	(c&(l)?(long)(*(long*)v):FI_S(c,v))
-#define FI_LL(c,v)	(c & (ll+j+z+t) ? (int64_t)(*(int64_t*)v) : FI_L(c,v) )
-#define IT_F(u,f1,f2,p)	(u) ? f1(p) : f2(p)
-#define CAST_C(c)	(c) &hh	? char : int
-#define CAST_S(c)	(c) &h	? short : CAST_C(c,v)
-#define CAST_L(c)	(c) &l	? long : CAST_S(c,v)
-#define CAST_LL(c)	((c) & (ll+j+z+t) ? (int64_t) : CAST_L(c,v))
-#define F6(l,v,f)	(f(*(unsigned char*)v))
-#define F5(l,v,f)	((l==2)?f(*(unsigned short*)v):F6(l,v,f))
-#define F4(l,v,f)	((l==4)?f(*(unsigned int*)v):F5(l,v,f))
-#define FB(l,v,f)	((l==8)?f(*(uint64_t*)v):F4(l,v,f))
-#define F3(l,v,f)	(f(*(char*)v))
-#define F2(l,v,f)	((l==2)?f(*(short*)v):F3(l,v,f))
-#define F1(l,v,f)	((l==4)?f(*(int*)v):F2(l,v,f))
-#define FA(l,v,f)	((l==8)?f(*(int64_t*)v):F1(l,v,f))
-#define F0(u,l,v,f)	v=u?FB(l,v,f):FA(l,v,f)
 
 /*
 **		INT
@@ -52,9 +27,10 @@
 static int
 	convert_i(t_format *o)
 {
-	MATCH(o->p.tick & 4 && !o->p.precision && !*(int64_t*)o->v, o->v = 0);
-	OR(o->p.flags & neg, o->v = ft_itoa(*(int64_t*)o->v));
-	ELSE(o->v = ft_itoa_unsigned(*(uint64_t*)o->v));
+	((o->p.tick & 4 && !o->p.precision && !*(int64_t*)o->v)
+	&& ((o->v = 0) || 1))
+	|| ((o->p.flags & neg) && ((o->v = ft_itoa(*(int64_t*)o->v)) || 1))
+	|| (o->v = ft_itoa_unsigned(*(uint64_t*)o->v));
 	precision_i(o);
 	width_o(o);
 	append_s(o);
@@ -73,17 +49,17 @@ static int
 int
 	parse_i(t_format *o)
 {
-	char	c;
+	char		c;
 	uint64_t	num;
 
 	o->v = &num;
 	c = ft_tolower(o->str[0]);
-	MATCH(o->p.length > 8, o->p.length = l);
-	MATCH(o->p.tick & (1 << 6) && !o->p.precision, (o->p.tick &= ~(1 << 2)));
-	MATCH(o->p.tick & 4, o->p.flags &= ~zero);
+	((o->p.length > 8) && (o->p.length = l));
+	((o->p.tick & (1 << 6) && !o->p.precision) && ((o->p.tick &= ~(1 << 2))));
+	((o->p.tick & 4) && (o->p.flags &= ~zero));
 	cast_o(o);
-	MATCH(c != 'u' && num >= (uint64_t)0x80 << (o->p.length - 1) * 8,
-		o->p.flags = o->p.flags & ~(plus + space) | neg);
-	MATCH(neg & o->p.flags, num = ~(num - 1) & ~0UL >> (64 - o->p.length * 8));
+	((c != 'u' && num >= (uint64_t)0x80 << (o->p.length - 1) * 8)
+	&& (o->p.flags = (o->p.flags & ~(plus + space)) | neg));
+	((neg & o->p.flags) && (num = ~(num - 1) & ~0UL >> (64 - o->p.length * 8)));
 	return (convert_i(o));
 }

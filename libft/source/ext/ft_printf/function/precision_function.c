@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 18:05:10 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:31:03 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 15:56:31 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ void
 	precision_o(t_format *o)
 {
 	o->len = ft_strlen(o->v);
-	((o->p.tick & 4) && (o->p.precision = MAX(o->p.precision, o->len))) ||
-	(o->p.precision = o->len);
+	((o->p.tick & 4)
+	&& ((o->p.precision = MAX(o->p.precision, o->len)) || 1))
+	|| (o->p.precision = o->len);
 	o->len = o->p.precision;
 }
 

@@ -6,15 +6,11 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 06:01:13 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:49:44 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/20 16:02:23 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
-**		FLOAT
-*/
 
 static FT_SIZE
 	convert_f(t_format *o)
@@ -24,35 +20,15 @@ static FT_SIZE
 	return (3);
 }
 
-/*
-**	static FT_SIZE
-**		convert_f(t_format *o)
-**	{
-**		size_t	ret;
-**		size_t	len;
-**
-**		ret = 0;
-**		o->p.precision = !(o->p.tick & 0b100) ? 6 : o->p.precision;
-**		o->v = infinite_double(*(double*)o->v, o->p.precision);
-**		len = ft_strlen(o->v);
-**		o->p.width = MAX((LL)(o->p.width - len), 0);
-**		if (o->p.flags & (plus + space + neg))
-**			modify_o(o, "sign");
-**		else
-**			modify_o(o, "pad");
-**		ret = write(1, o->v, ft_strlen(o->v));
-**		free(o->v);
-**		return (ret);
-**	}
-*/
-
-static void
+static int
 	is_float(t_format *o)
 {
-	MATCH(!(o->p.tick & 0b100), o->p.precision = 6);
-	MATCH(o->p.length > 8,
-		o->v = infinite_double(*(long double*)o->v, o->p.precision));
-	ELSE(o->v = infinite_double((long double)*(double*)o->v, o->p.precision));
+	((!(o->p.tick & 0b100))
+	&& (o->p.precision = 6));
+	((o->p.length > 8)
+	&& ((o->v = infinite_double(*(long double*)o->v, o->p.precision)) || 1))
+	|| (o->v = infinite_double((long double)*(double*)o->v, o->p.precision));
+	return (0);
 }
 
 static int
@@ -79,14 +55,14 @@ int
 	long double	ld;
 
 	ret = 0;
-	MATCH(o->p.length <= 8, o->v = &num);
-	ELSE(o->v = &ld);
-	MATCH(o->p.length <= 8, num = va_arg(o->ap, double));
-	ELSE(ld = va_arg(o->ap, long double));
+	((o->p.length <= 8) && (o->v = &num))
+	|| (o->v = &ld);
+	((o->p.length <= 8) && ((num = va_arg(o->ap, double)) || 1))
+	|| (ld = va_arg(o->ap, long double));
 	o->p.flags |= (num < 0) << 7;
-	MATCH(o->p.length > 8, ret = is_anomaly(*(long double*)o->v, o));
-	ELSE(ret = is_anomaly((long double)*(double*)o->v, o));
-	MATCH(ret, RET(ret));
-	ELSE(is_float(o));
+	((o->p.length > 8) && ((ret = is_anomaly(*(long double*)o->v, o)) || 1))
+	|| (ret = is_anomaly((long double)*(double*)o->v, o));
+	if (ret || is_float(o))
+		RET(ret);
 	return (convert_f(o));
 }
