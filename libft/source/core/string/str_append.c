@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 20:55:41 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:15:11 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 13:05:38 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void
 		ft_memdel((void**)&b);
 }
 
-char	*ft_append(const char *s1, const char *s2, int mode)
+char
+	*ft_append(const char *s1, const char *s2, int mode)
 {
 	void	*string;
 

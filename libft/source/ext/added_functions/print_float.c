@@ -6,13 +6,11 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:02:58 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:43:20 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 13:06:57 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#define SIGN(n) ((n) & 0x01 << 31)
-#define EXPO(n) ((n) & 0x0FFFF)
 
 void	print_float(float f, size_t precision)
 {

@@ -6,14 +6,14 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 15:02:08 by viwade            #+#    #+#             */
-/*   Updated: 2019/06/02 15:39:14 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 13:11:49 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#define ___FREE(p, f) if(p){f(p);}
 
 void	ft_free(void *ap)
 {
-	___FREE(ap, free);
+	if (ap)
+		free(ap);
 }

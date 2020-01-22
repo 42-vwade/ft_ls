@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 19:01:40 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 14:07:33 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 12:56:29 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <sys/types.h>
-# define U_DOUBLE typedef union u_double	u_double
 # define SPECIFIER_LIST	"%cspdiouxfeganb"
 
 /*
@@ -46,7 +45,7 @@ enum	e_length {
 **	UNION STRUCT
 */
 
-U_DOUBLE;
+typedef union u_double	t_double;
 
 union	u_double
 {

@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 03:23:50 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 03:27:28 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 12:31:36 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	ls_lstdel(t_node *node)
 {
 	if (node)
 		ls_lstdel(node->next);
-	ft_memdel(&node);
+	ft_memdel((void**)&node);
 }

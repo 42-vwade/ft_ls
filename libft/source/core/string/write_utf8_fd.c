@@ -6,16 +6,12 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:10:43 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:43:20 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 13:06:24 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
-#define ENC(n) (wc >= (n))
-#define ENC1 (ENC(0x80) + ENC(0x800) + ENC(0x10000))
-#define ENC2 (ENC(0x200000) + ENC(0x4000000))
-#define SET(b) (((n > (b)) | 2) << (6 - (b)))
 
 static uint8_t
 	pad(int8_t n)
@@ -34,13 +30,16 @@ static void
 	uint8_t	set;
 	size_t	n;
 
-	n = 1 + ENC1 + ENC2;
+	n = 1
+	+ ((wc >= (0x80)) + (wc >= (0x800)) + (wc >= (0x10000)))
+	+ ((wc >= (0x200000)) + (wc >= (0x4000000)));
 	set = (n - 1) ? pad(n - 1) : 0x80;
 	while (n--)
 		if (n)
 			(utf[n] = 0x80 | (~(0xC0) & wc)) && (wc >>= 6);
 		else
 			utf[n] = (set << 1) | (~(set) & wc);
+	utf[6] = 0;
 }
 
 /*

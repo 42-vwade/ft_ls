@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 06:01:13 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/21 11:40:47 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/22 05:51:13 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static FT_SIZE
 
 /*
 **	Conditions already taken care of.
-**	Input specifier shall be o / O / x / X / p / P
+**	Input specifier shall be o / O / x / X / p / P	||	b
 **	Output shall be in in either base 16, or base 8 if o / O is given
 */
 

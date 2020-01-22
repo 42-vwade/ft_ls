@@ -6,11 +6,9 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 00:15:55 by viwade            #+#    #+#             */
-/*   Updated: 2019/07/17 22:20:22 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 12:59:46 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define _FT_SQRT	long double ft_sqroot(long double n){return(ft_sqrt(n));}
 
 long double
 	ft_sqrt(long double n)
@@ -34,4 +32,9 @@ long double
 	return (c);
 }
 
-_FT_SQRT;
+long double
+	ft_sqroot(n)
+	long double n;
+	{
+		return (ft_sqrt(n));
+}

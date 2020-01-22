@@ -6,12 +6,11 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/30 08:55:29 by viwade            #+#    #+#             */
-/*   Updated: 2019/02/08 18:06:28 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/21 13:06:47 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#define ABS(x) (((x) < 0) ? -(x) : (x))
 
 void
 	ft_putlong(long n)
