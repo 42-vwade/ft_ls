@@ -6,11 +6,65 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 12:19:06 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/22 10:05:10 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static void
+	ls_display(t_ls *ls)
+{
+	t_node	*node;
+	t_entry	*e;
+
+	(ls->flags.l)
+	&& ft_printf("%s%i\n", "total", ls->blocks);
+	node = ls->list;
+	while (node)
+	{
+		e = node->content;
+		((ls->flags.l)
+		&& ft_printf(LS_LFORM, (char*)&e->t, e->links, e->uname, e->gname,
+			ls->td[3], e->size, e->ctime, e->name, e->name_ext))
+		|| ft_printf("%-*s", ls->maxlen, e->name);
+		node = node->next;
+	}
+}
+
+static void
+	ls_build_list(t_ls *ls)
+{
+	while ((ls->e = readdir(ls->dir)))
+	{
+		if (ls->e->d_name[0] != '.' || ls->flags.a)
+			ls_node_append(&ls->list,
+			ls_node_new(ls_entry(ls->cur = malloc(sizeof(t_entry)), ls)));
+	}
+	((ls->flags.t) && ((ls->list = ls_merge_sort(ls->list, ls_sizcmp)) || 1))
+	|| ((ls->list = ls_merge_sort(ls->list, ls_strcmp)) || 1);
+	ls_display(ls);
+}
+
+static void
+	ls_end(const t_param *p, t_ls *ls)
+{
+	t_node	*node;
+
+	while ((node = ls->dirs))
+	{
+		(p->f.rr) && (ft_printf("\n%s:\n", node->content) || 1)
+		&& ft_ls(p, node->content);
+		(ls->dirs = node->next);
+		ft_memdel((void**)&node);
+	}
+	while ((node = ls->list))
+	{
+		ft_memdel((void**)&node->content);
+		(ls->list = node->next);
+		ft_memdel((void**)&node);
+	}
+}
 
 static int
 	exit_call(char *pathname)
@@ -19,45 +73,13 @@ static int
 	return (errno);
 }
 
-static void
-	ls_build_list(t_ls *ls)
-{
-	while ((ls->e = readdir(ls->dir)))
-	{
-		if (ls->e->d_name[0] != '.' || ls->param.f.a)
-			ls_node_append(&ls->list,
-			ls_node_new(ls_entry(ls->cur = malloc(sizeof(t_entry)), ls)));
-	}
-}
-
-static void
-	ls_end(const t_param *p, t_ls *ls)
-{
-	t_node	*node;
-	t_entry	*e;
-
-	while ((node = ls->list))
-	{
-		e = node->content;
-		ft_memdel((void**)&e->name);
-		ls->list = node->next;
-		ft_memdel((void**)&node);
-	}
-	node = ls->dirs;
-	while (p->f.rr && node)
-	{
-		ft_printf("\n%s:\n", node->content) && ft_ls(p, node->content);
-		(node = node->next);
-	}
-	ls_lstdel(ls->dirs);
-}
-
 int
 	ft_ls(const t_param *parameters, char *directory)
 {
 	t_ls	ls;
 
 	ft_bzero(&ls, sizeof(ls));
+	ft_memcpy((void*)&ls.flags, &parameters->f, sizeof(t_flags));
 	if (!(ls.dir = opendir(directory)))
 		return (exit_call(directory));
 	ls.cwd = directory;

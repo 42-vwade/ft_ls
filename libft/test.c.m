@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_macros.h                                     :+:      :+:    :+:   */
+/*   test.c.m                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/22 09:00:46 by viwade           ###   ########.fr       */
+/*   Created: 2019/09/19 19:01:06 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/22 07:34:56 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_MACROS_H
-# define FT_LS_MACROS_H
-# define LS_FLAGS	"ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
-# define LS_LFORM	"%s %2hi %s  %s %*li %s %s%s\n"
+#include "libft.h"
+#ifdef TEST
 
-/*
-**	# define PATH_MAX	1024 <-- I predicted this in syslimits.h, and it is so!
-*/
-
+int	main(int n, char **v)
+{
+	// ft_printf("%afuck %affs\n", 1, 2);
+	if (n >= 2 && v[1][0])
+	{
+		v[1][0] = 'b';
+		ft_printf("%s", v[1]);
+	}
+	else
+		ft_printf("%#afuck %#affs\n", "red", "blue");
+}
 #endif

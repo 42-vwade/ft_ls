@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/20 11:46:49 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/22 09:56:00 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,16 @@ struct	s_entry
 
 struct	s_flags
 {
-	char	l: 1;
-	char	rr: 1;
-	char	a: 1;
-	char	r: 1;
-	char	t: 1;
-	char	u: 1;
-	char	f: 1;
-	char	g: 1;
-	char	d: 1;
-	char	gg: 1;
+	char	l;
+	char	rr;
+	char	a;
+	char	r;
+	char	t;
+	char	u;
+	char	f;
+	char	g;
+	char	d;
+	char	gg;
 };
 
 struct	s_parameters
@@ -87,19 +87,19 @@ struct	s_parameters
 
 struct	s_ls
 {
-	DIR			*dir;
-	t_dirent	*e;
-	t_entry		*cur;
-	char		*cwd;
-	uint64_t	maxlen;
-	int			blocks;
-	t_stat		buf;
-	t_node		*list;
-	t_node		*node;
-	long		i;
-	t_flags		flags;
-	t_param		param;
-	t_node		*dirs;
+	DIR				*dir;
+	t_dirent		*e;
+	t_entry			*cur;
+	char			*cwd;
+	uint32_t		maxlen;
+	int				blocks;
+	t_stat			buf;
+	long			i;
+	const t_flags	flags;
+	t_node			*node;
+	t_node			*list;
+	t_node			*dirs;
+	uint16_t		td[4];
 };
 
 struct	s_main

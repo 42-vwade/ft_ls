@@ -19,7 +19,7 @@ FLAGS		:=	$(FLAGS) -Werror
 
 ####	DEBUGGING		########################################################
 
-FLAGS		:=	$(INCLUDE) -Wall -Wextra -g
+DEBUGF		:=	$(INCLUDE) -Wall -Wextra -g
 
 ####	AUTO SETTING	########################################################
 
@@ -32,6 +32,9 @@ all: $(NAME)
 
 test: test.c
 	@gcc -g $(INCLUDE) $(LIBFT) $^
+
+beta: $(CFILES) $(LFILES)
+	@gcc $(DEBUGF) -o ls_beta $^
 
 $(NAME): $(LIBFT) $(OBJECTS)
 	@gcc $(FLAGS) -o $@ -L $(<D) -lft $(OBJECTS)
