@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 21:39:48 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 22:20:00 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 15:28:51 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int
 	right = b->content;
 	return (left->mtime > right->mtime);
 }
+
 int
 	ls_rsizcmp(t_node *a, t_node *b)
 {

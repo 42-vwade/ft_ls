@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:23:00 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 15:10:25 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ struct	s_flags
 	char	d;
 	char	gg;
 	char	ss;
-	char	_1;
+	char	n1;
 };
 
 struct	s_parameters
