@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:29:49 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:17:21 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void
 		&& ft_printf(LS_LFORM, (char*)&e->t, ls->td[0], e->links,
 		ls->td[1], e->uname, ls->td[2], e->gname, ls->td[3], e->size,
 		e->ctime, e->name, e->name_ext))
-		|| ft_printf("%-*s%.*s", ls->maxlen, e->name, ls->flags._1 | 1, "\n");
+		|| ft_printf("%-*s%.*s", ls->maxlen, e->name, ls->flags.n1 | 1, "\n");
 		node = node->next;
 	}
 }
@@ -42,7 +42,7 @@ static void
 			ls_node_append(&ls->list,
 			ls_node_new(ls_entry(ls->cur = malloc(sizeof(t_entry)), ls)));
 	}
-	((ls->flags.ss || ls->flags.t)
+	((ls->cmp != ls_rstrcmp || ls->cmp != ls_strcmp)
 	&& (ls->list = ls_merge_sort(ls->list, ls_strcmp)));
 	ls->list = ls_merge_sort(ls->list, ls->cmp);
 	ls_display(ls);
@@ -69,9 +69,11 @@ static void
 }
 
 static int
-	exit_call(char *pathname)
+	exit_call(const t_param *p)
 {
-	ft_printf("ft_ls: %s: %s [%i]\n", pathname, strerror(errno), errno);
+	ft_printf(
+		"%s: %s: %s [%i]\n",
+		p->prgnm, p->cwd, strerror(errno), errno);
 	return (errno);
 }
 
@@ -84,7 +86,7 @@ int
 	ft_memcpy((void*)&ls.flags, &parameters->f, sizeof(t_flags));
 	ls_dir(ft_strcpy(ls.cwd, directory));
 	if (!(ls.dir = opendir(ls.cwd)))
-		return (exit_call(directory));
+		return (exit_call(parameters));
 	ls.cmp = parameters->cmp;
 	ls_build_list(&ls);
 	closedir(ls.dir);

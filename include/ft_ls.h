@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:13:40 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:10:02 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 int		ft_ls(const t_param *parameters, char *directory);
 int		ls_paths(const t_param *parameters, t_node *jobs);
 void	ls_lstdel(t_node *start);
-int		ls_default(char	*argv0);
-void	ls_cwd(char *argv0, char path[PATH_MAX]);
+int		ls_default(t_param *parameters);
+void	ls_cwd(char path[PATH_MAX], char *argv0);
 void	ls_endslash(char path[PATH_MAX]);
 int		ls_stat(t_entry *entry);
 int		ls_type(t_entry *entry);

@@ -6,14 +6,14 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:58:36 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/21 12:30:57 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:09:35 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 void
-	ls_cwd(char *argv0, char path[PATH_MAX])
+	ls_cwd(char path[PATH_MAX], char *argv0)
 {
 	int i;
 	int last;

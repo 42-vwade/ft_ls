@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:23:00 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:04:08 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,17 @@ struct	s_flags
 	char	d;
 	char	gg;
 	char	ss;
-	char	_1;
+	char	n1;
 };
 
 struct	s_parameters
 {
 	int			n;
+	char		*prgnm;
 	char		*argv0;
 	char		**v;
 	t_flags		f;
-	char		*cwd;
+	char		cwd[PATH_MAX + 1];
 	int			(*cmp)(t_node*, t_node*);
 };
 
@@ -115,8 +116,6 @@ struct	s_main
 {
 	int			argc;
 	char		**argv;
-	char		cwd[PATH_MAX + 1];
-	char		*prgnm;
 	DIR			*dir;
 	t_dirent	*e;
 	t_stat		buf;

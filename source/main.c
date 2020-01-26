@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:01:36 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:46:16 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:10:58 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,15 @@ static void
 		while ((v[0][i]) || ((v += 1) && 0))
 			if (v[0][i] == '-' && ((v += 1) || 1))
 				break ;
-			else if ((v[0][i] == 'l') && ((i += 1) || 1))
-				p->f.l = 1;
-			else if ((v[0][i] == 'R') && ((i += 1) || 1))
-				p->f.rr = 1;
-			else if ((v[0][i] == 'a') && ((i += 1) || 1))
-				p->f.a = 1;
-			else if ((v[0][i] == 'r') && ((i += 1) || 1))
-				p->f.r = 1;
-			else if ((v[0][i] == 't') && ((i += 1) || 1))
-				p->f.t = 1;
-			else if ((v[0][i] == 'u') && ((i += 1) || 1))
-				p->f.u = 1;
-			else if ((v[0][i] == 'S') && ((i += 1) || 1))
-				p->f.ss = 1;
 			else
-				i++;
+				(((v[0][i] == 'l') && ((i += 1) || 1)) && (p->f.l = 1)) ||
+				(((v[0][i] == 'R') && ((i += 1) || 1)) && (p->f.rr = 1)) ||
+				(((v[0][i] == 'a') && ((i += 1) || 1)) && (p->f.a = 1)) ||
+				(((v[0][i] == 'r') && ((i += 1) || 1)) && (p->f.r = 1)) ||
+				(((v[0][i] == 't') && ((i += 1) || 1)) && (p->f.t = 1)) ||
+				(((v[0][i] == 'u') && ((i += 1) || 1)) && (p->f.u = 1)) ||
+				(((v[0][i] == 'S') && ((i += 1) || 1)) && (p->f.ss = 1)) ||
+				(i += 1);
 	p->v = v;
 	set_cmp(p);
 }
@@ -57,10 +50,10 @@ int
 	t_main	m;
 
 	ft_bzero(&m, sizeof(m));
-	m.prgnm = ft_basename(v[0]);
-	ls_cwd(v[0], m.cwd);
+	m.param.prgnm = ft_basename(v[0]);
+	ls_cwd(m.param.cwd, v[0]);
 	if ((n) == 1)
-		return (ls_default(m.cwd));
+		return (ls_default(&m.param));
 	ls_parameters(&m.param, n, &v[1]);
 	if (*m.param.v)
 		m.jobs = ls_collect_paths(&m.param);
@@ -69,7 +62,7 @@ int
 	else if (m.jobs && (ft_ls(&m.param, m.jobs->content) || 1))
 		ft_memdel((void*)&m.jobs);
 	else
-		ft_ls(&m.param, m.cwd);
+		ft_ls(&m.param, m.param.cwd);
 }
 
 /*

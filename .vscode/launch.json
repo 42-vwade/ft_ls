@@ -28,9 +28,6 @@
 			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/ls_beta",
 			"args": [
-				"-lRart",
-				"/dev",
-				".",
 			],
 			"stopAtEntry": false,
 			"environment": [],
