@@ -6,33 +6,11 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 09:07:07 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/15 20:19:21 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/25 21:40:12 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-int
-	ls_strcmp(t_node *a, t_node *b)
-{
-	t_entry	*left;
-	t_entry	*right;
-
-	left = a->content;
-	right = b->content;
-	return (ft_strcmp(left->name, right->name) > 0);
-}
-
-int
-	ls_sizcmp(t_node *a, t_node *b)
-{
-	t_entry	*left;
-	t_entry	*right;
-
-	left = a->content;
-	right = b->content;
-	return (left->size > right->size);
-}
 
 static t_node
 	*node_merge(t_node *a, t_node *b, int (*f)(t_node*, t_node*))

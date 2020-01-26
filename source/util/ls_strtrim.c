@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_collect_jobs.c                                  :+:      :+:    :+:   */
+/*   ls_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:53:07 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/23 18:40:32 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/25 20:59:38 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int
-	ls_namesort(t_node *a, t_node *b)
+static int	is_whitespace(char c)
 {
-	char	*left;
-	char	*right;
-
-	left = a->content;
-	right = b->content;
-	return (ft_strcmp(left, right) > 0);
+	return ((9 <= c && c <= 13) || c == 32);
 }
 
-t_node
-	*ls_collect_paths(t_param *p)
+char		*ls_strtrim(char const *s)
 {
-	char	**v;
-	t_node	*paths;
+	size_t	start;
+	size_t	len;
 
-	v = p->v;
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(ls_strtrim(*v++)));
-	paths = ls_merge_sort(paths, ls_namesort);
-	return (paths);
+	if ((start = !s))
+		return (0);
+	start = 0;
+	len = ft_strlen(s);
+	while (is_whitespace(s[start]))
+		start++;
+	while (len && is_whitespace(s[len - 1]))
+		len--;
+	if (s[len])
+		((char *)s)[len] = 0;
+	return (&((char *)s)[start]);
 }

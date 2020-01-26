@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/22 09:56:00 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/25 23:23:00 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ struct	s_type {
 	char	owner[3];
 	char	group[3];
 	char	other[3];
+	char	ext;
 	char	null;
 };
 
@@ -47,7 +48,9 @@ struct	s_entry
 	char		uname[64];
 	char		gname[64];
 	long		size;
+	time_t		mtime;
 	char		ctime[13];
+	char		cyear[5];
 	char		name[NAME_MAX];
 	char		link[PATH_MAX];
 	char		name_ext[NAME_MAX + 4 + PATH_MAX];
@@ -61,6 +64,7 @@ struct	s_entry
 	t_grp		grp;
 	t_time		time;
 	int			hidden;
+	int			rev;
 };
 
 struct	s_flags
@@ -75,14 +79,18 @@ struct	s_flags
 	char	g;
 	char	d;
 	char	gg;
+	char	ss;
+	char	_1;
 };
 
 struct	s_parameters
 {
 	int			n;
+	char		*argv0;
 	char		**v;
 	t_flags		f;
 	char		*cwd;
+	int			(*cmp)(t_node*, t_node*);
 };
 
 struct	s_ls
@@ -90,7 +98,7 @@ struct	s_ls
 	DIR				*dir;
 	t_dirent		*e;
 	t_entry			*cur;
-	char			*cwd;
+	char			cwd[PATH_MAX + 1];
 	uint32_t		maxlen;
 	int				blocks;
 	t_stat			buf;
@@ -100,6 +108,7 @@ struct	s_ls
 	t_node			*list;
 	t_node			*dirs;
 	uint16_t		td[4];
+	int				(*cmp)(t_node*, t_node*);
 };
 
 struct	s_main

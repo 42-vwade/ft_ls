@@ -12,7 +12,8 @@
 			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/ls_beta",
 			"args": [
-				"-l",
+				"-lRart",
+				"/dev",
 			],
 			"preLaunchTask": "Make: Beta",
 			"stopAtEntry": false,
@@ -27,8 +28,8 @@
 			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/ls_beta",
 			"args": [
-				"-l",
-				"/",
+				"-lRart",
+				"/dev",
 				".",
 			],
 			"stopAtEntry": false,

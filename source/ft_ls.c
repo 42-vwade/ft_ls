@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/22 10:05:10 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/25 23:29:49 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ static void
 	t_entry	*e;
 
 	(ls->flags.l)
-	&& ft_printf("%s%i\n", "total", ls->blocks);
+	&& ft_printf("%s%i\n", "total ", ls->blocks);
 	node = ls->list;
 	while (node)
 	{
 		e = node->content;
 		((ls->flags.l)
-		&& ft_printf(LS_LFORM, (char*)&e->t, e->links, e->uname, e->gname,
-			ls->td[3], e->size, e->ctime, e->name, e->name_ext))
-		|| ft_printf("%-*s", ls->maxlen, e->name);
+		&& ft_printf(LS_LFORM, (char*)&e->t, ls->td[0], e->links,
+		ls->td[1], e->uname, ls->td[2], e->gname, ls->td[3], e->size,
+		e->ctime, e->name, e->name_ext))
+		|| ft_printf("%-*s%.*s", ls->maxlen, e->name, ls->flags._1 | 1, "\n");
 		node = node->next;
 	}
 }
@@ -41,8 +42,9 @@ static void
 			ls_node_append(&ls->list,
 			ls_node_new(ls_entry(ls->cur = malloc(sizeof(t_entry)), ls)));
 	}
-	((ls->flags.t) && ((ls->list = ls_merge_sort(ls->list, ls_sizcmp)) || 1))
-	|| ((ls->list = ls_merge_sort(ls->list, ls_strcmp)) || 1);
+	((ls->flags.ss || ls->flags.t)
+	&& (ls->list = ls_merge_sort(ls->list, ls_strcmp)));
+	ls->list = ls_merge_sort(ls->list, ls->cmp);
 	ls_display(ls);
 }
 
@@ -80,9 +82,10 @@ int
 
 	ft_bzero(&ls, sizeof(ls));
 	ft_memcpy((void*)&ls.flags, &parameters->f, sizeof(t_flags));
-	if (!(ls.dir = opendir(directory)))
+	ls_dir(ft_strcpy(ls.cwd, directory));
+	if (!(ls.dir = opendir(ls.cwd)))
 		return (exit_call(directory));
-	ls.cwd = directory;
+	ls.cmp = parameters->cmp;
 	ls_build_list(&ls);
 	closedir(ls.dir);
 	ls_end(parameters, &ls);

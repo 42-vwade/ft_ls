@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:42 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/22 07:54:01 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/25 23:03:42 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int
 	e->grp = getgrgid(e->stat.st_gid)[0];
 	ft_strncpy(e->uname, e->pwd.pw_name, sizeof(e->uname) - 1);
 	ft_strncpy(e->gname, e->grp.gr_name, sizeof(e->gname) - 1);
-	ft_strncpy(e->ctime, &ctime(&e->stat.st_ctimespec.tv_sec)[4], 12);
+
 	return (1);
 }

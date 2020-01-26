@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_collect_jobs.c                                  :+:      :+:    :+:   */
+/*   ls_dir.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:53:07 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/25 20:32:07 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/25 21:16:04 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int
-	ls_namesort(t_node *a, t_node *b)
+int	ls_dir(char s[PATH_MAX])
 {
-	char	*left;
-	char	*right;
+	size_t	len;
 
-	left = a->content;
-	right = b->content;
-	return (ft_strcmp(left, right) > 0);
+	len = ft_strlen(s);
+	if (len && s[len - 1] != '/' && len + 1 < PATH_MAX)
+		(s[len] = '/') && (s[len + 1] = 0);
+	return (1);
 }
 
-t_node
-	*ls_collect_paths(t_param *p)
-{
-	char	**v;
-	t_node	*paths;
-
-	v = p->v;
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(ls_strtrim(*v++)));
-	paths = ls_merge_sort(paths, ls_namesort);
-	return (paths);
-}
+/*
+**	edge cases:
+**		string length must be at least 1
+**		last char is not '/'
+**		total length of string + 1 is less than PATH_MAX
+*/

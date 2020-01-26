@@ -13,6 +13,7 @@
 		"limits.h": "c",
 		"pwd.h": "c",
 		"stdint.h": "c",
-		"ratio": "c"
+		"ratio": "c",
+		"list": "c"
 	}
 }

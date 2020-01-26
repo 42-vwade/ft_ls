@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_collect_jobs.c                                  :+:      :+:    :+:   */
+/*   ls_endslash.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:53:07 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/23 12:22:25 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/23 12:48:28 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int
-	ls_namesort(t_node *a, t_node *b)
+void	ls_endslash(char path[PATH_MAX])
 {
-	char	*left;
-	char	*right;
+	int		i;
 
-	left = a->content;
-	right = b->content;
-	return (ft_strcmp(left, right) > 0);
-}
-
-t_node
-	*ls_collect_paths(t_param *p)
-{
-	char	**v;
-	t_node	*paths;
-
-	v = p->v;
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(ls_strtrim(*v++)));
-	paths = ls_merge_sort(paths, ls_namesort);
-	return (paths);
+	i = ft_strlen(path);
+	if (path[i - 1] != '/' && i + 1 < PATH_MAX)
+	{
+		path[0] = '/';
+		path[1] = 0;
+	}
 }

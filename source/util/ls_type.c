@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:41 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/22 08:59:46 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/22 11:44:18 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int
 	ls_link(e)
 	t_entry *e;
 	{
-	readlink(e->name, e->link, PATH_MAX);
-	ft_strcat(ft_strncpy(e->name_ext, " -> ", 4), e->link);
+	readlink(e->fullname, e->link, PATH_MAX);
+	ft_strcat(ft_strncpy(e->name_ext, " -> ", 5), e->link);
 	return (1);
 }
 
@@ -42,5 +42,6 @@ int
 	e->t.other[0] = (e->stat.st_mode & S_IROTH) ? 'r' : '-';
 	e->t.other[1] = (e->stat.st_mode & S_IWOTH) ? 'w' : '-';
 	e->t.other[2] = (e->stat.st_mode & S_IXOTH) ? 'x' : '-';
+	(e->t.ext = ' ');
 	return (1);
 }

@@ -1,38 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_collect_jobs.c                                  :+:      :+:    :+:   */
+/*   ls_revcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:53:07 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/25 21:39:48 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/25 22:20:00 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 int
-	ls_namesort(t_node *a, t_node *b)
+	ls_rstrcmp(t_node *a, t_node *b)
 {
-	char	*left;
-	char	*right;
+	t_entry	*left;
+	t_entry	*right;
 
 	left = a->content;
 	right = b->content;
-	return (ft_strcmp(left, right) > 0);
+	return (ft_strcmp(left->name, right->name) < 0);
 }
 
-t_node
-	*ls_collect_paths(t_param *p)
+int
+	ls_rtcmp(t_node *a, t_node *b)
 {
-	char	**v;
-	t_node	*paths;
+	t_entry	*left;
+	t_entry	*right;
 
-	v = p->v;
-	paths = 0;
-	while (*v)
-		ls_node_append(&paths, ls_node_new(ls_strtrim(*v++)));
-	paths = ls_merge_sort(paths, ls_namesort);
-	return (paths);
+	left = a->content;
+	right = b->content;
+	return (left->mtime > right->mtime);
+}
+int
+	ls_rsizcmp(t_node *a, t_node *b)
+{
+	t_entry	*left;
+	t_entry	*right;
+
+	left = a->content;
+	right = b->content;
+	return (left->size > right->size);
 }
