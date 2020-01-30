@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/26 16:10:02 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 02:00:40 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "ft_ls_structs.h"
 
 int		ft_ls(const t_param *parameters, char *directory);
+int		ls_file(const t_param *parameters, char *filename, int file_descriptor);
 int		ls_paths(const t_param *parameters, t_node *jobs);
 void	ls_lstdel(t_node *start);
 int		ls_default(t_param *parameters);
@@ -37,5 +38,10 @@ t_node	*ls_node_new(void *content);
 void	ls_node_append(t_node **node, t_node *new);
 char	*ls_strtrim(char const *s);
 int		ls_dir(char path[PATH_MAX]);
+void	set_table(t_ls *ls);
+
+int		ls_list(t_ls *ls);
+int		ls_single(t_ls *ls);
+int		ls_columns(t_ls *ls);
 
 #endif

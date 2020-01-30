@@ -28,6 +28,9 @@
 			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/ls_beta",
 			"args": [
+				"-l",
+				".gitignore",
+				"/dev",
 			],
 			"stopAtEntry": false,
 			"environment": [],

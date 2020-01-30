@@ -6,13 +6,13 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:42 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/25 23:06:09 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 01:43:43 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void
+void
 	set_table(t_ls *ls)
 {
 	uint16_t	t;
@@ -34,15 +34,11 @@ static int
 }
 
 static int
-	ls_time(t_ls *ls)
+	ls_time(const t_flags *f, t_entry *e)
 {
-	t_entry	*e;
-
-	e = ls->cur;
-	((ls->flags.u)
-	&& ((e->mtime = e->stat.st_atimespec.tv_sec) || 1))
+	((f->u) && ((e->mtime = e->stat.st_atimespec.tv_sec) || 1))
 	|| (e->mtime = e->stat.st_mtimespec.tv_sec);
-	((e->mtime < (long)time(0) - 15780000l)
+	((e->mtime < (long)time(0) - LS_6MOS)
 	&& ft_strncpy(e->ctime, &ctime(&e->mtime)[4], 7)
 	&& ft_strncpy(&e->ctime[7], &ctime(&e->mtime)[19], 5))
 	|| ft_strncpy(e->ctime, &ctime(&e->mtime)[4], sizeof(e->ctime) - 1);
@@ -55,14 +51,14 @@ t_entry
 	ft_bzero(e, sizeof(e[0]));
 	ft_strncat(ft_strcpy(e->fullname, ls->cwd), ls->e->d_name, ls->e->d_namlen);
 	ft_strncpy(e->name, ls->e->d_name, ls->e->d_namlen);
-	(ls_stat(e) && (ls_time(ls) && ls_type(e)
-	&& (ls->blocks += ls->cur->stat.st_blocks)
+	(ls_stat(e) && (ls_time(&ls->flags, e) && ls_type(e)
+	&& (ls->blocks += e->stat.st_blocks)
 	&& (e->name[0] == '.' && (e->hidden = 1))));
-	if (ls->cur->t.t == 'd' && can_read(e)
+	if (e->t.t == 'd' && can_read(e)
 		&& (!ft_strnequ(".", e->name, 2) && !ft_strnequ("..", e->name, 3)))
-		ls_node_append(&ls->dirs, ls_node_new(ls->cur->fullname));
-	(ls->maxlen < 1 + ls->e->d_namlen)
-	&& (ls->maxlen = 1 + ls->e->d_namlen);
+		ls_node_append(&ls->dirs, ls_node_new(e->fullname));
+	(ls->maxlen < 4 + ls->e->d_namlen)
+	&& (ls->maxlen = 4 + ls->e->d_namlen);
 	e->rev = ls->flags.r;
 	set_table(ls);
 	return (e);

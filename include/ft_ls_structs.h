@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/26 16:29:49 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:48:06 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ struct	s_main
 	t_flags		flags;
 	t_param		param;
 	t_node		*jobs;
+	int			ret;
 };
 
 #endif
