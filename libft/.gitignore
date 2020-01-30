@@ -12,7 +12,7 @@ a.*
 x.*
 .vscode*
 a.out*
-*test*
+test*
 ls_beta*
 ./ft_ls*
 
