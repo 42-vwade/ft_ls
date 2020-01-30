@@ -16,6 +16,8 @@ LFILES		:=	$(shell find $(dir $(LIBFT)) ! -name "._*" -regex ".*\\.[c]")
 INCLUDE		:=	-I $(abspath $(INCLDIR)) -I $(abspath $(LINCL))
 FLAGS		:=	$(INCLUDE) -Wall -Wextra
 FLAGS		:=	$(FLAGS) -Werror
+MAKEFLAGS	+=	-r
+
 
 ####	DEBUGGING		########################################################
 
@@ -39,8 +41,9 @@ beta: $(CFILES) $(LFILES)
 $(NAME): $(LIBFT) $(OBJECTS)
 	@gcc $(FLAGS) -o $@ -L $(<D) -lft $(OBJECTS)
 
-$(OBJECTS): $(CFILES) | $(ODIR)
+$(ODIR)/%.o: $(CDIR)/*/%.c | $(ODIR)
 	@cd $(@D); gcc -c $(FLAGS) $(abspath $^)
+#	@cd $(@D); gcc -c $(FLAGS) $(abspath $^)
 #	@cd $(@D); $(foreach srcf, $(abspath $^), gcc -c $(FLAGS) $(srcf);)
 
 $(LIBFT): | $(ODIR)

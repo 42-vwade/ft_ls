@@ -12,13 +12,15 @@ a.*
 x.*
 .vscode*
 
+
 *.txt
 *.tmp
 *.gch
+*.dSYM
 
 build/
 test.c
 .sub
-./ft_ls*
-./ls_beta*
+./ft_ls
+./ls_beta
 nonsequitur
