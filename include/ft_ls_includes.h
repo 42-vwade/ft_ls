@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 08:12:53 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/17 23:10:33 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 00:54:30 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include <sys/types.h>
 # include <sys/types.h>
 # include <sys/xattr.h>
+# include <sys/ioctl.h>
 # include <dirent.h>
-# include <errno.h>
 # include <stdlib.h>
 # include <string.h>
 # include <limits.h>
+# include <fcntl.h>
 # include <stdio.h>
+# include <errno.h>
 # include <time.h>
 # include <pwd.h>
 # include <grp.h>

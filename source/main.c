@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:01:36 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/26 16:29:53 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/26 16:48:49 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void
 				(((v[0][i] == 't') && ((i += 1) || 1)) && (p->f.t = 1)) ||
 				(((v[0][i] == 'u') && ((i += 1) || 1)) && (p->f.u = 1)) ||
 				(((v[0][i] == 'S') && ((i += 1) || 1)) && (p->f.ss = 1)) ||
+				(((v[0][i] == '1') && ((i += 1) || 1)) && (p->f.n1 = 1)) ||
 				(i += 1);
 	p->v = v;
 	set_cmp(p);
@@ -59,10 +60,11 @@ int
 		m.jobs = ls_collect_paths(&m.param);
 	if (m.jobs && m.jobs->next)
 		ls_paths(&m.param, m.jobs);
-	else if (m.jobs && (ft_ls(&m.param, m.jobs->content) || 1))
+	else if (m.jobs && ((m.ret = ft_ls(&m.param, m.jobs->content)) || 1))
 		ft_memdel((void*)&m.jobs);
 	else
-		ft_ls(&m.param, m.param.cwd);
+		return (ft_ls(&m.param, m.param.cwd));
+	return (m.ret);
 }
 
 /*

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_macros.h                                     :+:      :+:    :+:   */
+/*   ls_single.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/28 03:03:51 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/30 02:01:55 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_MACROS_H
-# define FT_LS_MACROS_H
-# define LS_FLAGS	"ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
-# define LS_LFORM	"%s %*hi %-*s %-*s %*li %s %s%s\n"
-# define LS_6MOS	15780000l
+#include "ft_ls.h"
 
-/*
-**	# define PATH_MAX	1024 <-- I predicted this in syslimits.h, and it is so!
-*/
+int		ls_single(t_ls *ls)
+{
+	t_node	*node;
+	t_entry	*e;
 
-#endif
+	if (!ls->flags.n1)
+		return (0);
+	node = ls->list;
+	while (node)
+	{
+		e = node->content;
+		ft_printf("%s%s", e->name, "\n");
+		node = node->next;
+	}
+	return (1);
+}
