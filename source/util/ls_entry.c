@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:42 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 04:04:21 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 04:26:33 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_entry
 	(ls_stat(e) && (ls_time(&ls->flags, e) && ls_type(e)
 	&& (ls->blocks += e->stat.st_blocks)
 	&& (e->name[0] == '.' && (e->hidden = 1))));
-	if (ls->flags.l && e->t.t == 'd' && can_read(e)
+	if (e->t.t == 'd' && can_read(e)
 		&& (!ft_strnequ(".", e->name, 2) && !ft_strnequ("..", e->name, 3)))
 		ls_node_append(&ls->dirs, ls_node_new(e->fullname));
 	(ls->maxlen < 4 + ls->e->d_namlen)
