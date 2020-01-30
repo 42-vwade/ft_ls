@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:42 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 01:43:43 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 04:04:21 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@ static int
 	return (1);
 }
 
+static int
+	ls_device(t_entry *e, t_ls *ls)
+{
+	size_t	t;
+
+	if (e->t.t != 'c')
+		return (0);
+	e->dev_major = major(e->stat.st_rdev);
+	e->dev_minor = minor(e->stat.st_rdev);
+	(ls->dev[0] < (char)(t = 1 + ft_intlen(e->dev_major)))
+	&& (ls->dev[0] = t);
+	(ls->dev[1] < (char)(t = ft_intlen(e->dev_minor)))
+	&& (ls->dev[1] = t);
+	(ls->td[3] < (t = ls->dev[0] + ls->dev[1] + 2))
+	&& (ls->td[3] = t);
+	return (1);
+}
+
 t_entry
 	*ls_entry(t_entry *e, t_ls *ls)
 {
@@ -54,12 +72,13 @@ t_entry
 	(ls_stat(e) && (ls_time(&ls->flags, e) && ls_type(e)
 	&& (ls->blocks += e->stat.st_blocks)
 	&& (e->name[0] == '.' && (e->hidden = 1))));
-	if (e->t.t == 'd' && can_read(e)
+	if (ls->flags.l && e->t.t == 'd' && can_read(e)
 		&& (!ft_strnequ(".", e->name, 2) && !ft_strnequ("..", e->name, 3)))
 		ls_node_append(&ls->dirs, ls_node_new(e->fullname));
 	(ls->maxlen < 4 + ls->e->d_namlen)
 	&& (ls->maxlen = 4 + ls->e->d_namlen);
 	e->rev = ls->flags.r;
 	set_table(ls);
+	ls->flags.l && ls_device(e, ls);
 	return (e);
 }

@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/26 16:48:06 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 03:51:35 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ struct	s_entry
 	t_time		time;
 	int			hidden;
 	int			rev;
+	int			dev_major;
+	int			dev_minor;
+
 };
 
 struct	s_flags
@@ -109,6 +112,7 @@ struct	s_ls
 	t_node			*list;
 	t_node			*dirs;
 	uint16_t		td[4];
+	char			dev[2];
 	int				(*cmp)(t_node*, t_node*);
 };
 
