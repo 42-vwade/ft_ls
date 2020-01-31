@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/31 10:26:27 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 10:37:11 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void
 			ls_node_append(&ls->list,
 			ls_node_new(ls_entry(ls->cur = malloc(sizeof(t_entry)), ls)));
 	}
-	((ls->cmp != ls_rstrcmp || ls->cmp != ls_strcmp)
-	&& (ls->list = ls_merge_sort(ls->list, ls_strcmp)));
+	((ls->cmp != ls_rstrcmp || ls->cmp != ls_strcmp) &&
+	((ls->flags.r && ((ls->list = ls_merge_sort(ls->list, ls_rstrcmp)) || 1))
+	|| ((ls->list = ls_merge_sort(ls->list, ls_strcmp)) || 1)));
 	ls->list = ls_merge_sort(ls->list, ls->cmp);
 	ls->dirs = ls_merge_sort(ls->dirs, ls->cmp);
 	ls_list(ls) || ls_single(ls) || ls_columns(ls);
