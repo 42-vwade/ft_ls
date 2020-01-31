@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 08:12:53 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 00:54:30 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 23:01:55 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <sys/xattr.h>
 # include <sys/ioctl.h>
+# include <sys/acl.h>
 # include <dirent.h>
 # include <stdlib.h>
 # include <string.h>

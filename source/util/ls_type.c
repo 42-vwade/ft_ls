@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:41 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/22 11:44:18 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 23:31:28 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ static int
 	return (1);
 }
 
-int
-	ls_type(e)
-	t_entry *e;
-	{
-	e->t.null = 0;
+static void
+	ls_typecheck(t_entry *e)
+{
 	((S_ISBLK(e->stat.st_mode)) && (e->t.t = 'b')) ||
 	((S_ISCHR(e->stat.st_mode)) && (e->t.t = 'c')) ||
 	((S_ISDIR(e->stat.st_mode)) && (e->t.t = 'd')) ||
@@ -33,6 +31,11 @@ int
 	((S_ISSOCK(e->stat.st_mode)) && (e->t.t = 's')) ||
 	((S_ISFIFO(e->stat.st_mode)) && (e->t.t = 'p')) ||
 	(e->t.t = '-');
+}
+
+static void
+	ls_attributes(t_entry *e)
+{
 	e->t.owner[0] = (e->stat.st_mode & S_IRUSR) ? 'r' : '-';
 	e->t.owner[1] = (e->stat.st_mode & S_IWUSR) ? 'w' : '-';
 	e->t.owner[2] = (e->stat.st_mode & S_IXUSR) ? 'x' : '-';
@@ -42,6 +45,15 @@ int
 	e->t.other[0] = (e->stat.st_mode & S_IROTH) ? 'r' : '-';
 	e->t.other[1] = (e->stat.st_mode & S_IWOTH) ? 'w' : '-';
 	e->t.other[2] = (e->stat.st_mode & S_IXOTH) ? 'x' : '-';
-	(e->t.ext = ' ');
+}
+
+int
+	ls_type(e)
+	t_entry *e;
+	{
+	e->t.null = 0;
+	ls_typecheck(e);
+	ls_attributes(e);
+	ls_xcheck(e);
 	return (1);
 }

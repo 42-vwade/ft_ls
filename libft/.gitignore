@@ -16,12 +16,15 @@ test*
 ls_beta*
 ./ft_ls*
 
+
 *.txt
 *.tmp
 *.gch
-*.DSYM/*
+*.dSYM
 
 build/
 test.c
 .sub
+./ft_ls
+./ls_beta
 nonsequitur

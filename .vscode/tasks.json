@@ -10,6 +10,12 @@
             "args": [
                 "beta"
 			],
-		}
+		},
+		{
+			"type": "shell",
+            "label": "Make: Final",
+            "command": "make",
+            "args": [],
+		},
 	]
 }

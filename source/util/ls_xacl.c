@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_columns.c                                       :+:      :+:    :+:   */
+/*   ls_xacl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 09:03:59 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/30 23:28:54 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/30 23:38:53 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-typedef struct winsize	t_winsize;
-
-int		ls_columns(t_ls *ls)
+void	ls_xacl(t_entry *e)
 {
-	t_node		*node;
-	t_entry		*e;
-	size_t		i;
-	t_winsize	w;
+	acl_t		acl;
+	acl_entry_t	acl_e;
 
-	node = ls->list;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	while (node && !(i = 0))
-	{
-		while (node && i++ < w.ws_col / ls->maxlen)
-			((e = node->content) || 1) &&
-			(ft_printf("%-*s", ls->maxlen, e->name) || 1) &&
-			(node = node->next);
-		write(1, "\n", 1);
-		(node) && (node = node->next);
-	}
-	return (1);
+	acl = acl_get_link_np(e->fullname, ACL_TYPE_EXTENDED);
+	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &acl_e) == -1)
+		(acl_free(acl) || 1) && (acl = 0);
+	acl && (e->t.ext = '+') &&
+	acl_free(acl);
 }

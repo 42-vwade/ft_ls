@@ -5,6 +5,23 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "ft_ls: build & run",
+			"MIMode": "lldb",
+			"type": "cppdbg",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"program": "${workspaceFolder}/ft_ls",
+			"args": [
+				"c",
+				"b",
+				"a",
+			],
+			"preLaunchTask": "Make: Final",
+			"stopAtEntry": false,
+			"environment": [],
+			"externalConsole": false,
+		},
+		{
 			"name": "ls_beta: build & run",
 			"MIMode": "lldb",
 			"type": "cppdbg",
@@ -12,8 +29,8 @@
 			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/ls_beta",
 			"args": [
-				"-lRart",
-				"/dev",
+				"-l",
+				"/",
 			],
 			"preLaunchTask": "Make: Beta",
 			"stopAtEntry": false,
@@ -28,7 +45,8 @@
 			"cwd": "${workspaceFolder}",
 			"program": "${workspaceFolder}/ls_beta",
 			"args": [
-				"-R",
+				"-l",
+				"/",
 			],
 			"stopAtEntry": false,
 			"environment": [],
