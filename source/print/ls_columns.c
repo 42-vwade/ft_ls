@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/31 09:04:21 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 10:07:32 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void
 			ft_sprintf("%-*s", ls->maxlen, e->name), 3))) ||
 		(output = ft_sprintf("%-*s", ls->maxlen, e->name))) || 1) &&
 			(node = node->next);
-		write(1, "\n", 1);
+		output = ft_append(output, "\n", 1);
 		(node) && (node = node->next);
 	}
 	ft_printf("%s", output);
