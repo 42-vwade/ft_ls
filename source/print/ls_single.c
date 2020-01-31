@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/31 09:05:18 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 10:03:04 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void
 int
 	ls_single(t_ls *ls)
 {
-
 	if ((!ls->flags.n1))
 		return (0);
 	print_form(ls->list);
