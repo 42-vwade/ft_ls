@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/31 10:49:00 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 10:52:14 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void
 	((ls->cmp != ls_rstrcmp || ls->cmp != ls_strcmp) &&
 	((ls->flags.r
 		&& ((ls->list = ls_merge_sort(ls->list, ls_rstrcmp)) || 1)
-		&& ((ls->list = ls_merge_sort(ls->dirs, ls_rstrcmp)) || 1))
+		&& ((ls->dirs = ls_merge_sort(ls->dirs, ls_rstrcmp)) || 1))
 	|| (((ls->list = ls_merge_sort(ls->list, ls_strcmp)) || 1)
-	&& ((ls->list = ls_merge_sort(ls->dirs, ls_strcmp)) || 1))));
+	&& ((ls->dirs = ls_merge_sort(ls->dirs, ls_strcmp)) || 1))));
 	ls->list = ls_merge_sort(ls->list, ls->cmp);
 	ls->dirs = ls_merge_sort(ls->dirs, ls->cmp);
 	ls_list(ls) || ls_single(ls) || ls_columns(ls);
