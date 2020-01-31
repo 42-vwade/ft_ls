@@ -16,7 +16,6 @@ test*
 ls_beta*
 ./ft_ls*
 
-
 *.txt
 *.tmp
 *.gch
