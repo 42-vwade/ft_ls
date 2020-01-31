@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 21:20:37 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 00:13:56 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int
 	if (!(ls.dir = opendir(ls.cwd)) && (errno == ENOTDIR))
 		return (ls_file(parameters, directory, open(directory, O_RDONLY)));
 	else if (!ls.dir)
-		return (exit_call(parameters, directory));
+		return (exit_call(parameters, ft_basename(directory)));
 	ls_build_list(&ls);
 	closedir(ls.dir);
 	ls_end(parameters, &ls);
