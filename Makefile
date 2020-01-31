@@ -57,7 +57,7 @@ clean:
 		make clean -C $(dir $(LIBFT))
 
 fclean:
-	@rm -rf $(BUILDDIR);\
+	@rm -rf $(NAME) $(BUILDDIR);\
 		make fclean -C $(dir $(LIBFT))
 
 re: fclean all
