@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/31 10:12:43 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 10:17:34 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void
 	while ((node = ls->dirs))
 	{
 		(p->f.rr) && (ft_printf("\n%s:\n", node->content) || 1)
-		&& ft_ls(p, node->content);
+		&& ft_ls(p, ((t_entry*)node->content)->fullname);
 		(ls->dirs = node->next);
 		ft_memdel((void**)&node);
 	}
