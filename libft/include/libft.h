@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:34:03 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/21 12:27:03 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 08:31:35 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 
 int32_t		ft_printf(const char *format, ...);
 int32_t		ft_vprintf(const char *format, va_list ap);
+caddr_t		ft_sprintf(const char *format, ...);
+caddr_t		ft_vsprintf(const char *format, va_list ap);
+int			ft_std_sprintf(char *str, const char *format, ...);
+int			ft_std_vsprintf(char *str, const char *format, va_list ap);
+int			ft_snprintf(char *str, size_t size, const char *format, ...);
+int			ft_vsnprintf(char *str, size_t size,
+				const char *format, va_list ap);
 void		ft_putchar(int32_t c);
 void		ft_putchar_fd(char c, int32_t fd);
 void		ft_putwchar(uint32_t wc);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 19:36:03 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/31 01:11:28 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/31 00:40:04 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/31 01:10:49 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 **	Complete rewrite incoming.
 */
 
-int
-	ft_printf(const char *format, ...)
+caddr_t
+	ft_sprintf(const char *format, ...)
 {
 	va_list	ap;
-	int		length[1];
+	caddr_t	str;
 
 	va_start(ap, format);
-	length[0] = ft_vprintf(format, ap);
+	str = ft_vsprintf(format, ap);
 	va_end(ap);
-	return (length[0]);
+	return (str);
 }
