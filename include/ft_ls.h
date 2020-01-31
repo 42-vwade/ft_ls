@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 02:00:40 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 23:31:11 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ void	set_table(t_ls *ls);
 int		ls_list(t_ls *ls);
 int		ls_single(t_ls *ls);
 int		ls_columns(t_ls *ls);
+
+void	ls_xcheck(t_entry *list_entry);
+void	ls_xacl(t_entry *list_entry);
 
 #endif

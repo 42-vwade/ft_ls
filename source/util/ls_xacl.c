@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_collect_jobs.c                                  :+:      :+:    :+:   */
+/*   ls_xacl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/15 19:57:12 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 21:23:24 by viwade           ###   ########.fr       */
+/*   Created: 2020/01/30 23:28:54 by viwade            #+#    #+#             */
+/*   Updated: 2020/01/30 23:38:53 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int
-	ls_namesort(t_node *a, t_node *b)
+void	ls_xacl(t_entry *e)
 {
-	char	*left;
-	char	*right;
+	acl_t		acl;
+	acl_entry_t	acl_e;
 
-	left = a->content;
-	right = b->content;
-	return (ft_strcmp(left, right) > 0);
-}
-
-t_node
-	*ls_collect_paths(t_param *p)
-{
-	char	**v;
-	t_node	*paths;
-	t_node	*node;
-
-	v = p->v;
-	paths = 0;
-	while (*v || ((node = paths) && 0))
-		ls_node_append(&paths, ls_node_new(ls_strtrim(*v++)));
-	paths = ls_merge_sort(paths, ls_namesort);
-	return (paths);
+	acl = acl_get_link_np(e->fullname, ACL_TYPE_EXTENDED);
+	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &acl_e) == -1)
+		(acl_free(acl) || 1) && (acl = 0);
+	acl && (e->t.ext = '+') &&
+	acl_free(acl);
 }

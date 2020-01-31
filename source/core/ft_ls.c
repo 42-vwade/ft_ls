@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 10:29:04 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/30 21:20:37 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static void
 }
 
 static int
-	exit_call(const t_param *p)
+	exit_call(const t_param *p, char *pathname)
 {
 	ft_printf(
 		"%s: %s: %s [%i]\n",
-		p->prgnm, p->cwd, strerror(errno), errno);
+		p->prgnm, pathname, strerror(errno), errno);
 	return (errno);
 }
 
@@ -68,7 +68,7 @@ int
 	if (!(ls.dir = opendir(ls.cwd)) && (errno == ENOTDIR))
 		return (ls_file(parameters, directory, open(directory, O_RDONLY)));
 	else if (!ls.dir)
-		return (exit_call(parameters));
+		return (exit_call(parameters, directory));
 	ls_build_list(&ls);
 	closedir(ls.dir);
 	ls_end(parameters, &ls);
