@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 17:15:19 by viwade            #+#    #+#             */
-/*   Updated: 2019/09/26 14:52:51 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 01:11:40 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@
 */
 
 int		ft_printf(const char *format, ...);
+caddr_t	ft_sprintf(const char *format, ...);
+int		ft_std_sprintf(char *str, const char *format, ...);
+int		ft_snprintf(char *str, size_t size, const char *format, ...);
 int		ft_vprintf(const char *format, va_list ap);
+caddr_t	ft_vsprintf(const char *format, va_list ap);
+int		ft_std_vsprintf(char *str, const char *format, va_list ap);
+int		ft_vsnprintf(char *str, size_t size, const char *format, va_list ap);
 
 /*
 **		SUBDERMAL FUNCTIONS

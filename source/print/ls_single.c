@@ -6,25 +6,37 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 02:01:55 by viwade           ###   ########.fr       */
+/*   Updated: 2020/01/31 09:05:18 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ls_single(t_ls *ls)
+static void
+	print_form(t_node *node)
 {
-	t_node	*node;
+	void	*output;
 	t_entry	*e;
 
-	if (!ls->flags.n1)
-		return (0);
-	node = ls->list;
+	output = 0;
 	while (node)
 	{
 		e = node->content;
-		ft_printf("%s%s", e->name, "\n");
+		(output &&
+		(output = ft_append(output, ft_sprintf("%s%s", e->name, "\n"), 3))) ||
+		(output = ft_sprintf("%s%s", e->name, "\n"));
 		node = node->next;
 	}
+	ft_printf("%s", output);
+	ft_memdel(&output);
+}
+
+int
+	ls_single(t_ls *ls)
+{
+
+	if ((!ls->flags.n1))
+		return (0);
+	print_form(ls->list);
 	return (1);
 }
