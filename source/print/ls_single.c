@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/31 10:03:04 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/01 12:27:30 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,14 @@
 static void
 	print_form(t_node *node)
 {
-	void	*output;
 	t_entry	*e;
 
-	output = 0;
 	while (node)
 	{
 		e = node->content;
-		(output &&
-		(output = ft_append(output, ft_sprintf("%s%s", e->name, "\n"), 3))) ||
-		(output = ft_sprintf("%s%s", e->name, "\n"));
+		ft_printf("%s%s", e->name, "\n");
 		node = node->next;
 	}
-	ft_printf("%s", output);
-	ft_memdel(&output);
 }
 
 int
