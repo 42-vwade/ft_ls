@@ -6,11 +6,20 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:01:36 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/26 16:48:49 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/02 17:30:00 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static int
+	show_usage(char *prgnm, char c)
+{
+	ft_printf("%s: %s%c\nusage: ft_ls [%s] [file ...]\n",
+		prgnm, "unhandled parameter -- ", c, LS_FLAGS);
+	exit(errno);
+	return (1);
+}
 
 static void
 	set_cmp(t_param *p)
@@ -40,7 +49,7 @@ static void
 				(((v[0][i] == 'u') && ((i += 1) || 1)) && (p->f.u = 1)) ||
 				(((v[0][i] == 'S') && ((i += 1) || 1)) && (p->f.ss = 1)) ||
 				(((v[0][i] == '1') && ((i += 1) || 1)) && (p->f.n1 = 1)) ||
-				(i += 1);
+				(show_usage(p->prgnm, v[0][i]));
 	p->v = v;
 	set_cmp(p);
 }
