@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:41 by viwade            #+#    #+#             */
-/*   Updated: 2020/02/03 12:30:33 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 12:43:26 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int
 	ls_type(e)
 	t_entry *e;
 	{
-
 	e->t.null = 0;
 	ls_attributes(e);
 	ls_typecheck(e);
