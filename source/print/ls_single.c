@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/02/02 17:35:36 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 12:12:20 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void
 	while (node)
 	{
 		e = node->content;
-		ft_printf("%s%s", e->name, "\n");
+		ft_printf("%a%s%s", e->color, e->name, "\x1b[0m\n");
 		node = node->next;
 	}
 }
