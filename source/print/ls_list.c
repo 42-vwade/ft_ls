@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/02/01 12:26:42 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/02 16:18:29 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static int
 static void
 	print_form(t_node *node, t_ls *ls)
 {
-
 	ft_printf("%s%i\n", "total ", ls->blocks);
 	while (node)
 	{
