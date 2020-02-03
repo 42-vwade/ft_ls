@@ -6,7 +6,11 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:58:46 by viwade            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/01/31 09:47:49 by viwade           ###   ########.fr       */
+=======
+/*   Updated: 2020/01/31 10:52:14 by viwade           ###   ########.fr       */
+>>>>>>> 6ee03e3983e6270a1f5389422a211ee040ec45c6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +25,14 @@ static void
 			ls_node_append(&ls->list,
 			ls_node_new(ls_entry(ls->cur = malloc(sizeof(t_entry)), ls)));
 	}
-	((ls->cmp != ls_rstrcmp || ls->cmp != ls_strcmp)
-	&& (ls->list = ls_merge_sort(ls->list, ls_strcmp)));
+	((ls->cmp != ls_rstrcmp || ls->cmp != ls_strcmp) &&
+	((ls->flags.r
+		&& ((ls->list = ls_merge_sort(ls->list, ls_rstrcmp)) || 1)
+		&& ((ls->dirs = ls_merge_sort(ls->dirs, ls_rstrcmp)) || 1))
+	|| (((ls->list = ls_merge_sort(ls->list, ls_strcmp)) || 1)
+	&& ((ls->dirs = ls_merge_sort(ls->dirs, ls_strcmp)) || 1))));
 	ls->list = ls_merge_sort(ls->list, ls->cmp);
+	ls->dirs = ls_merge_sort(ls->dirs, ls->cmp);
 	ls_list(ls) || ls_single(ls) || ls_columns(ls);
 }
 
@@ -34,8 +43,9 @@ static void
 
 	while ((node = ls->dirs))
 	{
-		(p->f.rr) && (ft_printf("\n%s:\n", node->content) || 1)
-		&& ft_ls(p, node->content);
+		(p->f.rr)
+		&& (ft_printf("\n%s:\n", ((t_entry*)node->content)->fullname) || 1)
+		&& ft_ls(p, ((t_entry*)node->content)->fullname);
 		(ls->dirs = node->next);
 		ft_memdel((void**)&node);
 	}
