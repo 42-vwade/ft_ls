@@ -6,11 +6,27 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:41 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 23:31:28 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 12:30:33 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static int
+	ls_color(t_entry *e)
+{
+	e->color = 7;
+	((e->t.t == 'b') && (e->color = 44)) ||
+	((e->t.t == 'c') && (e->color = 11)) ||
+	((e->t.t == 'd') && (e->color = 32)) ||
+	((e->t.t == 'l') && (e->color = 5)) ||
+	((e->t.t == 's') && (e->color = 118)) ||
+	((e->t.t == 'p') && (e->color = 197)) ||
+	(e->t.t == '-'
+	&& (((e->t.owner[2] | e->t.group[2] | e->t.other[2]) & ~5) == 'x')
+	&& (e->color = 1));
+	return (1);
+}
 
 static int
 	ls_link(e)
@@ -51,9 +67,11 @@ int
 	ls_type(e)
 	t_entry *e;
 	{
+
 	e->t.null = 0;
-	ls_typecheck(e);
 	ls_attributes(e);
+	ls_typecheck(e);
 	ls_xcheck(e);
+	((!e->color) && (e->color = 7)) || ls_color(e);
 	return (1);
 }

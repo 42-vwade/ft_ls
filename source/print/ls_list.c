@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/02/02 16:21:50 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 12:00:32 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int
 {
 	ft_printf(LS_LFORM, (char*)&e->t, ls->td[0], e->links,
 		ls->td[1], e->uname, ls->td[2], e->gname, ls->td[3], e->size,
-		e->ctime, e->name, e->name_ext);
+		e->ctime, e->color, e->name, e->name_ext);
 	return (1);
 }
 
@@ -29,7 +29,7 @@ static int
 	ft_printf(LS_LDEV, (char*)&e->t, ls->td[0], e->links,
 		ls->td[1], e->uname, ls->td[2], e->gname,
 		ls->dev[0], e->dev_major, ls->dev[1], e->dev_minor,
-		e->ctime, e->name, e->name_ext);
+		e->ctime, e->color, e->name, e->name_ext);
 	return (1);
 }
 
