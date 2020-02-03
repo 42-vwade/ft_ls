@@ -6,7 +6,11 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:42 by viwade            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/01/31 09:48:07 by viwade           ###   ########.fr       */
+=======
+/*   Updated: 2020/01/31 10:16:37 by viwade           ###   ########.fr       */
+>>>>>>> 6ee03e3983e6270a1f5389422a211ee040ec45c6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +72,7 @@ t_entry
 	&& (e->name[0] == '.' && (e->hidden = 1))));
 	if (e->t.t == 'd'
 		&& (!ft_strnequ(".", e->name, 2) && !ft_strnequ("..", e->name, 3)))
-		ls_node_append(&ls->dirs, ls_node_new(e->fullname));
+		ls_node_append(&ls->dirs, ls_node_new(e));
 	(ls->maxlen < 4 + ls->e->d_namlen)
 	&& (ls->maxlen = 4 + ls->e->d_namlen);
 	e->rev = ls->flags.r;
