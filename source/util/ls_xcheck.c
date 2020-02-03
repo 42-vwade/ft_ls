@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 22:47:13 by viwade            #+#    #+#             */
-/*   Updated: 2020/02/02 17:50:28 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 12:57:56 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void
 	int32_t		xattr;
 
 	xattr = listxattr(e->fullname, NULL, 0, XATTR_NOFOLLOW);
-	((xattr > 0) && (e->t.ext = '@')) ||
-	(e->t.ext = ' ');
-	ls_xacl(e);
+	if (!(((xattr > 0) && (e->t.ext = '@')) ||
+			((e->t.ext = ' ') && 0)))
+		ls_xacl(e);
 }
 
 /*
