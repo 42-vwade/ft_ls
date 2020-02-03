@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 08:39:42 by viwade            #+#    #+#             */
-/*   Updated: 2020/02/02 16:22:17 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 12:24:49 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_entry
 	ft_bzero(e, sizeof(e[0]));
 	ft_strncat(ft_strcpy(e->fullname, ls->cwd), ls->e->d_name, ls->e->d_namlen);
 	ft_strncpy(e->name, ls->e->d_name, ls->e->d_namlen);
+	e->color = ls->flags.gg;
 	(ls_stat(e) && (ls_time(&ls->flags, e) && ls_type(e)
 	&& (ls->blocks += e->stat.st_blocks)
 	&& (e->name[0] == '.' && (e->hidden = 1))));

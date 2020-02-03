@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:00:15 by viwade            #+#    #+#             */
-/*   Updated: 2020/01/30 04:21:01 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 10:06:56 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ struct	s_entry
 	int			rev;
 	int			dev_major;
 	int			dev_minor;
+	uint8_t		color;
 
 };
 

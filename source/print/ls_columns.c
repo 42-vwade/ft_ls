@@ -6,7 +6,7 @@
 /*   By: viwade <viwade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 00:58:27 by viwade            #+#    #+#             */
-/*   Updated: 2020/02/02 17:37:25 by viwade           ###   ########.fr       */
+/*   Updated: 2020/02/03 12:12:54 by viwade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void
 	{
 		while (node && i++ < w->ws_col / ls->maxlen)
 			((e = node->content) || 1) &&
-			(ft_printf("%-*s", ls->maxlen, e->name)) &&
+			(ft_printf("%a%-*s\x1b[0m", e->color, ls->maxlen, e->name)) &&
 			(node = node->next);
 		(node) && (node = node->next);
 		write(1, "\n", 1);
